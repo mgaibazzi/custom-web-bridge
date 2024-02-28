@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.bt_usb = new System.Windows.Forms.Button();
+            this.bt_open_file = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bt_usb
@@ -41,11 +42,22 @@
             this.bt_usb.UseVisualStyleBackColor = true;
             this.bt_usb.Click += new System.EventHandler(this.bt_usb_Click);
             // 
+            // bt_open_file
+            // 
+            this.bt_open_file.Location = new System.Drawing.Point(97, 64);
+            this.bt_open_file.Name = "bt_open_file";
+            this.bt_open_file.Size = new System.Drawing.Size(144, 59);
+            this.bt_open_file.TabIndex = 1;
+            this.bt_open_file.Text = "Open File";
+            this.bt_open_file.UseVisualStyleBackColor = true;
+            this.bt_open_file.Click += new System.EventHandler(this.bt_open_file_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(821, 450);
+            this.Controls.Add(this.bt_open_file);
             this.Controls.Add(this.bt_usb);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -57,6 +69,7 @@
         #endregion
 
         private System.Windows.Forms.Button bt_usb;
+        private System.Windows.Forms.Button bt_open_file;
     }
 }
 

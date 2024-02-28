@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using System.Xml;
 
 namespace customwebbridge
 {
@@ -16,6 +17,8 @@ namespace customwebbridge
     {
         CuCustomWndAPIWrap customWndAPIWrap = null;
         CuCustomWndDevice dev = null;
+
+        string selectedFilePath;
         public Form1()
         {
             InitializeComponent();
@@ -107,6 +110,18 @@ namespace customwebbridge
                 ShowErrorMessage(ex);
                 return;
             }
+        }
+
+        private void bt_open_file_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.DefaultExt = "xml";
+            openFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+
+            DialogResult result = openFileDialog.ShowDialog();
+            selectedFilePath = openFileDialog.FileName;
+            MessageBox.Show(selectedFilePath);
         }
     }
 }
