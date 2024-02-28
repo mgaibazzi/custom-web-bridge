@@ -76,6 +76,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Items\BarcodeItem.cs" />
+    <Compile Include="Items\BaseItem.cs" />
+    <Compile Include="Items\FeedItem.cs" />
+    <Compile Include="Items\ImageItem.cs" />
+    <Compile Include="Items\OtherItem.cs" />
+    <Compile Include="Items\TextItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -103,5 +109,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
