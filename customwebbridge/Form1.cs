@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Xml;
+using customwebbridge.Libinterface;
 
 namespace customwebbridge
 {
@@ -27,7 +28,8 @@ namespace customwebbridge
 
         private void bt_usb_Click(object sender, EventArgs e)
         {
-            USBDevice[] usbArray = customWndAPIWrap.EnumUSBDevices();
+            
+            /*USBDevice[] usbArray = customWndAPIWrap.EnumUSBDevices();
             String[] strusbArray = new String[usbArray.Length];
 
             for (int i = 0; i < usbArray.Length; i++)
@@ -75,7 +77,7 @@ namespace customwebbridge
             else
             {
                 MessageBox.Show("No USB devices found.");
-            }
+            }*/
         }
         private void ShowErrorMessage(Exception ex)
         {
@@ -126,6 +128,7 @@ namespace customwebbridge
                 TextParsing textParsing = new TextParsing(selectedFilePath);
                 List<BaseItem> items = new List<BaseItem>();
                 textParsing.ParseXml(items);
+                PrintXmlList(items);
             }
             catch (Exception ex) 
             {
@@ -134,6 +137,66 @@ namespace customwebbridge
             }
             
         }
+        private void PrintXmlList(List<BaseItem> items)
+        {
+
+            USBDevice[] usbArray = customWndAPIWrap.EnumUSBDevices();
+            String[] strusbArray = new String[usbArray.Length];
+
+            for (int i = 0; i < usbArray.Length; i++)
+            {
+                USBDevice u = usbArray[i];
+                strusbArray[i] = u.SerialNumber;
+            }
+
+            if (usbArray.Length > 0)
+            {
+                try
+                {
+                    dev = customWndAPIWrap.OpenPrinterUSB(usbArray[0]);
+                    MessageBox.Show("USB device paired.");
+                    try
+                    {
+                        for (int k = 0; k < items.Count; k++)
+                        {
+                            PrintableText pt = new PrintableText((TextItem)items[k]);
+                            //dev.PrintText(pt.Testo.Text, pt.FontSettings1, pt.BAddLF);
+
+                            PrintFontSettings pfs = new PrintFontSettings();
+
+                            //dev.PrintText(pt.Testo.Text, pfs, pt.BAddLF);
+                            dev.PrintText(pt.Testo.Text, pt.FontSettings1, pt.BAddLF);
+                            //Exec the print of the text
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ShowErrorMessage(ex);
+                    }
+                    try
+                    {
+                        //Exec Partial Cut
+                        dev.Cut(CuCustomWndDevice.CutType.CUT_PARTIAL);
+                    }
+                    catch (Exception ex)
+                    {
+                        ShowErrorMessage(ex);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ShowErrorMessage(ex);
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("No USB devices found.");
+            }
+
+
+        }
 
     }
 }
+

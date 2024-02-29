@@ -170,11 +170,6 @@ namespace customwebbridge
                 // Handle XML parsing errors
                 MessageBox.Show("Error parsing XML: " + ex.Message, "XML Parsing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            MessageBox.Show(items[0].ToString()+"0");
-            MessageBox.Show(items[1].ToString()+"1");
-            MessageBox.Show(items[2].ToString() + "2");
-            MessageBox.Show(items[3].ToString() + "3");
-            //MessageBox.Show(items[4].ToString() + "4");
         }
     }
 }
