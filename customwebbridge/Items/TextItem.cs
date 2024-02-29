@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.AxHost;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
+using Custom.CuCustomWndAPI;
 
 namespace customwebbridge
 {
@@ -60,10 +61,10 @@ namespace customwebbridge
         private TextAlign align = TextAlign.Left;
         private int x;
         private int y;
-        private int width;
-        private int height;
+        private int width;//
+        private int height;//
         private Language lang = Language.en;
-        private FontStyle font = FontStyle.font_a;
+        private FontStyle font = FontStyle.font_a;//
         private bool smooth;
         private bool doubleHeight;
         private bool doubleWidth;
@@ -77,12 +78,12 @@ namespace customwebbridge
         // Default constructor
         public TextItem() : base(BaseItem.ItemType.text)
         {
-            Text = "";
+            Text = "   ,.-àòù+èì^[]@#;:_<>!£$%&/()=?^";
             Align = TextAlign.Left;
             X = 0;
             Y = 0;
-            Width = 1;
-            Height = 1;
+            Width = 3;
+            Height = 3;
             Lang = Language.en;
             Font = FontStyle.font_a;
             Smooth = false;
@@ -172,7 +173,7 @@ namespace customwebbridge
             get { return width; }
             set
             {
-                if (value < 0 && value > 2399)
+                if (value < 0 && value > 8)
                 {
                     throw new Exception("Valore non corretto");
                 }
@@ -185,7 +186,7 @@ namespace customwebbridge
             get { return height; }
             set
             {
-                if (value < 0 && value > 2399)
+                if (value < 0 && value > 8)
                 {
                     throw new Exception("Valore non corretto");
                 }

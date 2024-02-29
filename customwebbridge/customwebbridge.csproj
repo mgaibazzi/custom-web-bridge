@@ -82,6 +82,7 @@
     <Compile Include="Items\ImageItem.cs" />
     <Compile Include="Items\OtherItem.cs" />
     <Compile Include="Items\TextItem.cs" />
+    <Compile Include="Libinterface\PrintableText.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
