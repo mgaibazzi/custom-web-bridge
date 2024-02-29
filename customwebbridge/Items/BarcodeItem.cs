@@ -12,7 +12,7 @@ namespace customwebbridge
 
     {
 
-        //comuni
+        //commmon
 
 
 
@@ -51,7 +51,7 @@ namespace customwebbridge
 
 
 
-        //costrutore barcode
+        //Barcode constructor
 
 
 
@@ -85,7 +85,7 @@ public class Barcode2D : Barcode
         level_m,
         level_q,
         level_h,
-        Default                     //default (con la d minuscola!!)
+        Default                     //default (with d )
     }
 
     int errorCorrectionLevelAztecCode;
@@ -132,11 +132,11 @@ public class Barcode2D : Barcode
     }
 
 
-    public Barcode2D(int width, int height, string data, ErrorCorrectionLevel ecl, int errorCorrectionLevelAztecCode, int s_size, Type type) : base(ItemType.qrcode, width, height, data)
+    public Barcode2D(int width, int height, string data, ErrorCorrectionLevel ecl, int errorCorrectionLevelAztecCode, int s_size, Type type) : base(ItemType.qrcode, width, height, data)//main constructor
 
     {
-        this.Width = width;//controlli
-        this.Height = height;//controlli
+        this.Width = width;
+        this.Height = height;
         this.Data = data;
         this.ErrorCorrectionLevel1 = ecl;
         this.ErrorCorrectionLevelAztecCode = errorCorrectionLevelAztecCode;
@@ -240,7 +240,7 @@ public class Barcode1D : Barcode
 
 
 
-    public Barcode1D(int width, int height, string data, HRI hri, FontStyle font, Type type) : base(ItemType.barcode, width, height, data)
+    public Barcode1D(int width, int height, string data, HRI hri, FontStyle font, Type type) : base(ItemType.barcode, width, height, data)//main constructor
     {
         barcodeType = type;
         this.Width = width;

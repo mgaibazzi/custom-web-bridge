@@ -22,11 +22,11 @@ namespace customwebbridge
         //itemType
         ItemType itemtype;
 
-        public BaseItem(ItemType itemtype)
+        public BaseItem(ItemType itemtype)//constructor
         {
             this.itemtype = itemtype;
         }
-
+        //getter & setter
         public ItemType Itemtype { get => itemtype; set => itemtype = value; }
     }
 }

@@ -18,6 +18,7 @@ namespace customwebbridge
         CuCustomWndAPIWrap customWndAPIWrap = null;
         CuCustomWndDevice dev = null;
 
+
         string selectedFilePath;
         public Form1()
         {
@@ -118,10 +119,21 @@ namespace customwebbridge
 
             openFileDialog.DefaultExt = "xml";
             openFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
-
-            DialogResult result = openFileDialog.ShowDialog();
-            selectedFilePath = openFileDialog.FileName;
-            MessageBox.Show(selectedFilePath);
+            try
+            {
+                DialogResult result = openFileDialog.ShowDialog();
+                selectedFilePath = openFileDialog.FileName;
+                TextParsing textParsing = new TextParsing(selectedFilePath);
+                List<BaseItem> items = new List<BaseItem>();
+                textParsing.ParseXml(items);
+            }
+            catch (Exception ex) 
+            {
+                ShowErrorMessage(ex); 
+                return; 
+            }
+            
         }
+
     }
 }

@@ -85,7 +85,7 @@ namespace customwebbridge
             {
                 if (value < 1 && value > 255)
                 {
-                    throw new Exception("Valore non corretto");
+                    throw new Exception("Uncorrect value");
                 }
                 else repeat = value;
 

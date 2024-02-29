@@ -15,9 +15,9 @@ namespace customwebbridge
     // Enum to represent text alignment options
         public enum TextAlign
         {
-            Left,
-            Center,
-            Right
+            left,
+            center,
+            right
         }
 
         // Enum to represent supported languages
@@ -48,16 +48,16 @@ namespace customwebbridge
         // Enum to represent color styles
         public enum ColorStyle
         {
-            Color_1,
-            Color_2,
-            Color_3,
-            Color_4,
-            None
+            color_1,
+            color_2,
+            color_3,
+            color_4,
+            none
         }
 
         // Private fields to store the properties of TextForm
         private string text = "";
-        private TextAlign align = TextAlign.Left;
+        private TextAlign align = TextAlign.left;
         private int x;
         private int y;
         private int width;
@@ -70,7 +70,7 @@ namespace customwebbridge
         private bool reverse;
         private bool underLine;
         private bool emphasized;
-        private ColorStyle color = ColorStyle.Color_1;
+        private ColorStyle color = ColorStyle.color_1;
         private int linespace;
         private bool rotate;
 
@@ -78,7 +78,7 @@ namespace customwebbridge
         public TextItem() : base(BaseItem.ItemType.text)
         {
             Text = "";
-            Align = TextAlign.Left;
+            Align = TextAlign.left;
             X = 0;
             Y = 0;
             Width = 1;
@@ -91,7 +91,7 @@ namespace customwebbridge
             Reverse = false;
             UnderLine = false;
             Emphasized = false;
-            Color = ColorStyle.Color_1;
+            Color = ColorStyle.color_1;
             Linespace = 30;
             Rotate = false;
         }
@@ -128,7 +128,28 @@ namespace customwebbridge
             this.Linespace = linespace;
             this.Align = align;
         }
+        public TextItem(TextItem ti):base(BaseItem.ItemType.text)
+        {
+            this.Text = ti.Text;
+            this.Font = ti.Font;
+            this.Color = ti.Color;
+            this.Linespace = ti.Linespace;
+            this.Align = ti.Align;
+            this.X = ti.X;
+            this.Y = ti.Y;
+            this.Width = ti.Width;
+            this.Height = ti.Height;
+            this.Lang = ti.Lang;
+            this.Smooth = ti.Smooth;
+            this.DoubleHeight = ti.DoubleHeight;
+            this.DoubleWidth = ti.DoubleWidth;
+            this.Reverse = ti.Reverse;
+            this.UnderLine = ti.UnderLine;
+            this.Emphasized = ti.Emphasized;
+            this.Rotate = ti.Rotate;
 
+        }
+        public TextItem(string text): base(BaseItem.ItemType.text) { this.Text = text; }
         // Properties with getter and setter methods for each field
         //public string Text { get => text; set => text = value; }
         public string Text
@@ -137,7 +158,7 @@ namespace customwebbridge
             set
             {
                 if (value != null) text = value;
-                else throw new Exception("Stringa vuota");
+                else throw new Exception("String null");
             }
         }
         public TextAlign Align { get => align; set => align = value; }
@@ -148,7 +169,7 @@ namespace customwebbridge
             {
                 if (value < 0 && value > 2399)
                 {
-                    throw new Exception("Valore non corretto");
+                    throw new Exception("Uncorrect value");
                 }
                 else x = value;
 
@@ -161,7 +182,7 @@ namespace customwebbridge
             {
                 if (value < 0 && value > 2399)
                 {
-                    throw new Exception("Valore non corretto");
+                    throw new Exception("Uncorrect value");
                 }
                 else y = value;
 
@@ -172,9 +193,9 @@ namespace customwebbridge
             get { return width; }
             set
             {
-                if (value < 0 && value > 2399)
+                if (value < 0 && value > 8)
                 {
-                    throw new Exception("Valore non corretto");
+                    throw new Exception("Uncorrect value");
                 }
                 else width = value;
 
@@ -185,9 +206,9 @@ namespace customwebbridge
             get { return height; }
             set
             {
-                if (value < 0 && value > 2399)
+                if (value < 0 && value > 8)
                 {
-                    throw new Exception("Valore non corretto");
+                    throw new Exception("Uncorrect value");
                 }
                 else height = value;
 
@@ -200,7 +221,7 @@ namespace customwebbridge
             {
                 if (value < 0 && value > 2399)
                 {
-                    throw new Exception("Valore non corretto");
+                    throw new Exception("Uncorrect value");
                 }
                 else linespace = value;
 
@@ -216,5 +237,62 @@ namespace customwebbridge
         public bool Emphasized { get => emphasized; set => emphasized = value; }
         public ColorStyle Color { get => color; set => color = value; }
         public bool Rotate { get => rotate; set => rotate = value; }
+
+
+        /*private string text = "";
+        private TextAlign align = TextAlign.left;
+        private int x;
+        private int y;
+        private int width;
+        private int height;
+        private Language lang = Language.en;
+        private FontStyle font = FontStyle.font_a;
+        private bool smooth;
+        private bool doubleHeight;
+        private bool doubleWidth;
+        private bool reverse;
+        private bool underLine;
+        private bool emphasized;
+        private ColorStyle color = ColorStyle.color_1;
+        private int linespace;
+        private bool rotate;*/
+
+        /*public override string ToString() // stampa tutti i dati
+        {
+            string str;
+            str = "Nome:  " + Nome + " "
+                + "Cognome: " + Cognome + " "
+                + "Vittorie:" + Vittorie + " "
+                + "Eta:" + Eta+Environment.NewLine;
+            return str;
+        }*/
+
+        public override string ToString()
+        {
+            string str;
+            str = "Text: "+text
+                +"Align: " + align.ToString() + "\n"
+                + "X: " + x.ToString() + "\n"
+                + "Y: " + y.ToString() + "\n"
+                + "Width: " + width.ToString() + "\n"
+                + "Height: " + height.ToString() + "\n"
+                + "language: " + lang.ToString() + "\n"
+                + "FontStyle: " + font.ToString() + "\n"
+                + "Smooth: " + smooth.ToString() + "\n"
+                + "DoubleHeight: " + doubleHeight.ToString() + "\n"
+                + "DoubleWidth: " + doubleWidth.ToString() + "\n"
+                + "Reverse: " + reverse.ToString() + "\n"
+                + "Underline: " + underLine.ToString() + "\n"
+                + "Emphasized: " + emphasized.ToString() + "\n"
+                + "Color: " + color.ToString() + "\n"
+                + "Linespace: " + linespace.ToString() + "\n"
+                + "Rotate: " + rotate.ToString() + "\n";
+            return str;
+        }
+
+
+
+
+
     }
 }

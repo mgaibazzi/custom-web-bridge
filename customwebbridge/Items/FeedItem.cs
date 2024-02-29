@@ -31,7 +31,7 @@ namespace customwebbridge
             {
                 if (value < 0 && value > 2399)
                 {
-                    throw new Exception("Valore non corretto");
+                    throw new Exception("Uncorrect value");
                 }
                 else line = value;
 

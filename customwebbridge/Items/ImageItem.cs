@@ -29,7 +29,7 @@ namespace customwebbridge
 
         int width;//1-256
         int height;//1-256
-        string image = "";   //immagine codificata
+        string image = "";   //codified image
         bool scale;
         double brightness;//0.1-10
 
@@ -70,7 +70,7 @@ namespace customwebbridge
             {
                 if (value < 1 && value > 256)
                 {
-                    throw new Exception("Valore non corretto");
+                    throw new Exception("Uncorrect value");
                 }
                 else width = value;
 
@@ -83,7 +83,7 @@ namespace customwebbridge
             {
                 if (value < 1 && value > 256)
                 {
-                    throw new Exception("Valore non corretto");
+                    throw new Exception("Uncorrect value");
                 }
                 else height = value;
 
@@ -97,7 +97,7 @@ namespace customwebbridge
             {
                 if (value < 0.1 && value > 10)
                 {
-                    throw new Exception("Valore non corretto");
+                    throw new Exception("Uncorrect value");
                 }
                 else brightness = value;
 
