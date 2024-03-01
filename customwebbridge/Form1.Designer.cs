@@ -34,11 +34,11 @@
             // 
             // bt_usb
             // 
-            this.bt_usb.Location = new System.Drawing.Point(344, 172);
+            this.bt_usb.Location = new System.Drawing.Point(599, 64);
             this.bt_usb.Name = "bt_usb";
             this.bt_usb.Size = new System.Drawing.Size(108, 68);
             this.bt_usb.TabIndex = 0;
-            this.bt_usb.Text = "USB";
+            this.bt_usb.Text = "PRINT";
             this.bt_usb.UseVisualStyleBackColor = true;
             this.bt_usb.Click += new System.EventHandler(this.bt_usb_Click);
             // 

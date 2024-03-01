@@ -13,18 +13,9 @@ namespace customwebbridge
     {
 
         //commmon
-
-
-
         int width;
-
         int height;
-
         string data = "";
-
-
-
-
         public Barcode(ItemType pType, int width, int height, string data) : base(pType)
         {
 
@@ -37,7 +28,6 @@ namespace customwebbridge
             this.data = data;
 
         }
-
         public Barcode(ItemType pType) : base(pType)
         {
             pType = ItemType.none;
@@ -46,30 +36,15 @@ namespace customwebbridge
             Data = "";
         }
 
-
-
-
-
-
         //Barcode constructor
-
-
-
-
-
         public int Width { get => width; set => width = value; }
-
         public string Data { get => data; set => data = value; }
-
         public int Height { get => height; set => height = value; }
-
     }
 
 }
 public class Barcode2D : Barcode
-
-{
-
+{   
     public enum ErrorCorrectionLevel
     {
         level_0,
@@ -87,9 +62,7 @@ public class Barcode2D : Barcode
         level_h,
         Default                     //default (with d )
     }
-
     int errorCorrectionLevelAztecCode;
-
     int s_size;
     private ErrorCorrectionLevel errorCorrectionLevel;
     private Type typeQRCode;

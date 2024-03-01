@@ -85,6 +85,8 @@
     <Compile Include="Libinterface\PrintableText.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Xml_parsing\FeedParsing.cs" />
+    <Compile Include="Xml_parsing\Parser.cs" />
     <Compile Include="Xml_parsing\TextParsing.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

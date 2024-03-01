@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Xml;
 using customwebbridge.Libinterface;
+using customwebbridge.Xml_parsing;
+using System.IO;
 
 namespace customwebbridge
 {
@@ -18,66 +20,20 @@ namespace customwebbridge
     {
         CuCustomWndAPIWrap customWndAPIWrap = null;
         CuCustomWndDevice dev = null;
-
+        List<BaseItem> items = new List<BaseItem>();
 
         string selectedFilePath;
+        
         public Form1()
         {
             InitializeComponent();
+            bt_usb.Visible = false;
+
         }
 
         private void bt_usb_Click(object sender, EventArgs e)
         {
-            
-            /*USBDevice[] usbArray = customWndAPIWrap.EnumUSBDevices();
-            String[] strusbArray = new String[usbArray.Length];
-
-            for (int i = 0; i < usbArray.Length; i++)
-            {
-                USBDevice u = usbArray[i];
-                strusbArray[i] = u.SerialNumber;
-            }
-
-            if (usbArray.Length > 0)
-            {
-                try
-                {
-                    dev = customWndAPIWrap.OpenPrinterUSB(usbArray[0]);
-                    MessageBox.Show("USB device paired.");
-                    
-                    
-                    String strTextToPrint = "Marco";
-
-                    PrintFontSettings pfs = new PrintFontSettings();
-                    try
-                    {
-                        //Exec the print of the text
-                        dev.PrintText(strTextToPrint, pfs, true);
-                    }
-                    catch (Exception ex)
-                    {
-                        ShowErrorMessage(ex);
-                    }
-                    try
-                    {
-                        //Exec Partial Cut
-                        dev.Cut(CuCustomWndDevice.CutType.CUT_PARTIAL);
-                    }
-                    catch (Exception ex)
-                    {
-                        ShowErrorMessage(ex);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ShowErrorMessage(ex);
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("No USB devices found.");
-            }*/
+            PrintXmlList(items);
         }
         private void ShowErrorMessage(Exception ex)
         {
@@ -121,14 +77,38 @@ namespace customwebbridge
 
             openFileDialog.DefaultExt = "xml";
             openFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
+            bt_usb.Visible = true;
             try
             {
                 DialogResult result = openFileDialog.ShowDialog();
                 selectedFilePath = openFileDialog.FileName;
-                TextParsing textParsing = new TextParsing(selectedFilePath);
-                List<BaseItem> items = new List<BaseItem>();
-                textParsing.ParseXml(items);
-                PrintXmlList(items);
+
+                //textParsing.ParseXml(items);
+                //feedParsing.ParseXml(items);
+                // Load XML document
+                /*XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(selectedFilePath);
+                foreach(XmlNode node in xmlDoc.DocumentElement.ChildNodes)
+                {
+                    MessageBox.Show(node.Name);
+                    if (node.Name == "text")
+                    {
+                        textParsing.ParseXml(items);
+                    }
+                    else
+                    {
+                        if (node.Name == "feed")
+                        {
+                            feedParsing.ParseXml(items);
+                        }
+                    }
+                }*/
+
+                // Assuming XML structure contains <Text> element
+                Parser parser = new Parser(selectedFilePath);
+                parser.Parsing(items);
+
+                MessageBox.Show("count:"+items.Count.ToString());
             }
             catch (Exception ex) 
             {
@@ -197,6 +177,7 @@ namespace customwebbridge
 
         }
 
+        
     }
 }
 
