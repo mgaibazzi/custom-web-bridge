@@ -67,16 +67,31 @@ namespace customwebbridge
             reset = false;
             esc = "1b2a210100555550a";
         }
-        public OthersItem(int repeat, bool reset, string esc, Pattern pattern, Type type, Connector connector, ONTime onTime) : base(BaseItem.ItemType.other)
+
+        public OthersItem(int repeat, Pattern pattern1) : base(BaseItem.ItemType.other)//buzzer constructor
         {
             this.repeat = repeat;
-            this.reset = reset;
-            this.esc = esc;
-            this.pattern = pattern;
-            this.type = type;
-            this.connector = connector;
-            this.onTime = onTime;
+            this.pattern = pattern1;
         }
+        public OthersItem(Type type1): base(BaseItem.ItemType.other)//cut constructor
+        {
+            this.type = type1;
+        }
+        public OthersItem(bool reset) : base(BaseItem.ItemType.other)//reset constructor
+        {
+            this.reset = reset;
+        }
+        public OthersItem(string esc) : base(BaseItem.ItemType.other)//esc constructor
+        {
+            this.esc = esc;
+        }
+        public OthersItem(ONTime oNTime,Connector connector) : base(BaseItem.ItemType.other)//drawer constructor
+        {
+            this.connector = connector;
+            this.onTime = oNTime;
+        }
+
+        
 
         public int Repeat
         {

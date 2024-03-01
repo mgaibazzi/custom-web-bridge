@@ -58,7 +58,7 @@ namespace customwebbridge
 
         // Private fields to store the properties of TextForm
         private string text = "";
-        private TextAlign align = TextAlign.left;
+        //private TextAlign align = TextAlign.left;
         private int x;
         private int y;
         private int width;//
@@ -72,8 +72,8 @@ namespace customwebbridge
         private bool underLine;
         private bool emphasized;
         private ColorStyle color = ColorStyle.color_1;
-        private int linespace;
-        private bool rotate;
+        //private int linespace;
+        //private bool rotate;
 
         // Default constructor
         public TextItem() : base(BaseItem.ItemType.text)

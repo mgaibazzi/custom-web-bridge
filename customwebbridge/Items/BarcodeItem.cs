@@ -178,10 +178,10 @@ public class Barcode1D : Barcode
     }
     public enum HRI
     {
-        None,
-        Above,
-        Below,
-        Both
+        none,
+        above,
+        below,
+        both
     }
     public enum FontStyle
     {
@@ -202,12 +202,11 @@ public class Barcode1D : Barcode
 
     public Barcode1D(int width, int height, string data) : base(ItemType.barcode, width, height, data)//default constructor
     {
-        ;
         barcodeType = Type.code39;
         Width = 2;
         Height = 32;
         Data = "12345";
-        Hri1 = HRI.None;
+        Hri1 = HRI.none;
         Font1 = FontStyle.font_a;
     }
 
@@ -226,6 +225,8 @@ public class Barcode1D : Barcode
     //getter & setter
     public FontStyle Font1 { get => Font; set => Font = value; }
     public HRI Hri1 { get => Hri; set => Hri = value; }
-    public Type BarcodeType { get => BarcodeType; set => BarcodeType = value; }
+    //public Type BarcodeType { get => BarcodeType; set => BarcodeType = value; }
+
+    public Type BarcodeType { get => barcodeType; set => barcodeType = value; }
 }
 

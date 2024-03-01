@@ -17,12 +17,14 @@ namespace customwebbridge.Xml_parsing
 
         TextParsing textParsing = new TextParsing();
         FeedParsing feedParsing = new FeedParsing();
+        BarcodeParsing barcodeParsing = new BarcodeParsing();
         public void Parsing(List<BaseItem> items)
         {
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(selectedFilePath);
             foreach (XmlNode node in xmlDoc.DocumentElement.ChildNodes)
             {
+                
                 MessageBox.Show(node.Name);
                 if (node.Name == "text")
                 {
@@ -34,9 +36,22 @@ namespace customwebbridge.Xml_parsing
                     {
                         feedParsing.ParseNodeXml(items, node);
                     }
+                    else 
+                    {
+                        if (node.Name == "barcode")
+                        {
+                            barcodeParsing.Barcode1DParsing(node,items);
+                        }
+                        else
+                        {
+                            if(node.Name == "symbol")
+                            {
+                                barcodeParsing.Barcode2DParsing(node, items);
+                            }
+                        }
+                    }
                 }
-            }
-
+            }               
 
         }
     }
