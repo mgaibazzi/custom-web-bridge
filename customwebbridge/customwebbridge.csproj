@@ -87,6 +87,7 @@
     <Compile Include="Items\OtherItem.cs" />
     <Compile Include="Items\ResetItem.cs" />
     <Compile Include="Items\TextItem.cs" />
+    <Compile Include="Libinterface\Printable.cs" />
     <Compile Include="Libinterface\PrintableBarcode.cs" />
     <Compile Include="Libinterface\PrintableCut.cs" />
     <Compile Include="Libinterface\PrintableFeed.cs" />

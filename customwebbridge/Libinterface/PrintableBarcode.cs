@@ -17,16 +17,16 @@ namespace customwebbridge.Libinterface
         {
             Barcode_data = barcode2D.Data;
             convert_barcode2dType(barcode2D);
-            BarcodeSettings.BarcodeHeight=Convert.ToUInt32(barcode2D.Height);
-            BarcodeSettings.BarcodeWidth = Convert.ToUInt32(barcode2D.Width);
+            BarcodeSettings.BarcodeHeight=Convert.ToUInt32(barcode2D.Height*100);
+            BarcodeSettings.BarcodeWidth = Convert.ToUInt32(barcode2D.Width*100);
         }
         public PrintableBarcode(Barcode1D barcode1D) 
         {
             Barcode_data=barcode1D.Data;    
             convert_barcode1dType(barcode1D);
             convert_HRI(barcode1D);
-            BarcodeSettings.BarcodeHeight = Convert.ToUInt32(barcode1D.Height);
-            BarcodeSettings.BarcodeWidth = Convert.ToUInt32(barcode1D.Width);
+            BarcodeSettings.BarcodeHeight = Convert.ToUInt32(barcode1D.Height*100);
+            BarcodeSettings.BarcodeWidth = Convert.ToUInt32(barcode1D.Width*100);
         }
 
         public string Barcode_data { get => barcode_data; set => barcode_data = value; }
