@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml;
+using static customwebbridge.ImageItem;
+using static customwebbridge.TextItem;
+
+namespace customwebbridge.Xml_parsing
+{
+    public class ImageParsing
+    {
+        public void ParseNodeXml(XmlNode imageNode, List<BaseItem> items)
+        {
+            Mode mode = new Mode();
+            Color color = new Color();
+            int width;
+            int height;
+            string imageCode = "";
+            string md,cl;
+
+
+            try
+            {
+                ImageItem imageItem = new ImageItem();
+                imageItem.StrImage = imageNode.InnerText;
+                if (imageNode.Attributes["width"]?.Value != null)
+                {
+                    width = Convert.ToInt32(imageNode.Attributes["width"].Value);
+                    imageItem.Width = width;
+                }
+                if (imageNode.Attributes["height"]?.Value != null)
+                {
+                    height = Convert.ToInt32(imageNode.Attributes["height"].Value);
+                    imageItem.Height = height;
+                }
+                if (imageNode.Attributes["color"]?.Value != null)
+                {
+                    cl = Convert.ToString(imageNode.Attributes["color"]?.Value);
+                    color = (Color)Enum.Parse(typeof(Color), cl);//Casting from string to enum
+                    imageItem.Color1 = color;
+                }
+                if (imageNode.Attributes["mode"]?.Value != null)
+                {
+                    md = Convert.ToString(imageNode.Attributes["mode"]?.Value);
+                    mode = (Mode)Enum.Parse(typeof(Mode), md);//Casting from string to enum
+                    imageItem.Mode1 = mode;
+                }
+                items.Add(imageItem);
+            }
+            catch (Exception ex)
+            {
+                // Handle XML parsing errors
+                MessageBox.Show("Error parsing XML: " + ex.Message, "XML Parsing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+    }
+}
