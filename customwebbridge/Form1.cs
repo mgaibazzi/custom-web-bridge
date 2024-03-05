@@ -24,7 +24,7 @@ namespace customwebbridge
         String str = "";
 
         string selectedFilePath;
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -63,7 +63,7 @@ namespace customwebbridge
                 //Create the Class
                 customWndAPIWrap = new CuCustomWndAPIWrap(CuCustomWndAPIWrap.CcwLogVerbosity.CCW_LOG_DEEP_DEBUG, null);
                 //Init the library
-                customWndAPIWrap.InitLibrary();
+                customWndAPIWrap.InitLibrary();  
             }
             catch (Exception ex)
             {
@@ -89,65 +89,65 @@ namespace customwebbridge
                 parser.Parsing(items);
 
                 //String str = "";
-                for(int i=0; i<items.Count; i++)
+                for (int i = 0; i < items.Count; i++)
                 {
                     str = items[i].ToString();
                     MessageBox.Show(str);
                 }
 
-                MessageBox.Show("count:"+items.Count.ToString());
+                MessageBox.Show("count:" + items.Count.ToString());
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                ShowErrorMessage(ex); 
-                return; 
+                ShowErrorMessage(ex);
+                return;
             }
         }
         private void PrintXmlList(List<BaseItem> items)
         {
+                try
+                {
 
+                    PrintableText pt = new PrintableText((TextItem)items[0]);
+                    //dev.PrintText(pt.Testo.Text, pt.FontSettings1, pt.BAddLF);
+
+                    PrintFontSettings pfs = new PrintFontSettings();
+                str = items[0].ToString();
+                //dev.PrintText(pt.Testo.Text, pfs, pt.BAddLF);
+                dev.PrintText(str, pt.FontSettings1, pt.BAddLF);
+                    //Exec the print of the text
+                    dev.Cut(CuCustomWndDevice.CutType.CUT_PARTIAL);
+
+                }
+                catch (Exception ex)
+                {
+                    ShowErrorMessage(ex);
+                }
+        }
+
+        private void cb_select_USB_SelectedIndexChanged(object sender, EventArgs e)
+        {
             USBDevice[] usbArray = customWndAPIWrap.EnumUSBDevices();
             String[] strusbArray = new String[usbArray.Length];
+
 
             for (int i = 0; i < usbArray.Length; i++)
             {
                 USBDevice u = usbArray[i];
                 strusbArray[i] = u.SerialNumber;
+                cb_select_USB.Items.Add(strusbArray[i]);
+
             }
 
-            if (usbArray.Length > 0)
+            int selected = cb_select_USB.SelectedIndex;
+
+            if (cb_select_USB.SelectedIndex != -1)
             {
                 try
                 {
-                    dev = customWndAPIWrap.OpenPrinterUSB(usbArray[0]);
-                    MessageBox.Show("USB device paired.");
-                    try
-                    {
-                        for (int k = 0; k < items.Count; k++)
-                        {
-                            PrintableText pt = new PrintableText((TextItem)items[k]);
-                            //dev.PrintText(pt.Testo.Text, pt.FontSettings1, pt.BAddLF);
-
-                            PrintFontSettings pfs = new PrintFontSettings();
-
-                            //dev.PrintText(pt.Testo.Text, pfs, pt.BAddLF);
-                            dev.PrintText(str, pt.FontSettings1, pt.BAddLF);
-                            //Exec the print of the text
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ShowErrorMessage(ex);
-                    }
-                    try
-                    {
-                        //Exec Partial Cut
-                        dev.Cut(CuCustomWndDevice.CutType.CUT_PARTIAL);
-                    }
-                    catch (Exception ex)
-                    {
-                        ShowErrorMessage(ex);
-                    }
+                    //Open the device
+                    dev = customWndAPIWrap.OpenPrinterUSB(usbArray[selected]);
+                    MessageBox.Show("USB device paired");
                 }
                 catch (Exception ex)
                 {
@@ -155,17 +155,13 @@ namespace customwebbridge
                     return;
                 }
             }
-            else
-            {
-                MessageBox.Show("No USB devices found.");
-            }
         }
-        private void PrintAll(List<BaseItem> items) 
-        { 
-            for(int i = 0; i < items.Count; i++) 
-            { 
-                
-            }
+
+        private void bt_pair_USB_Click(object sender, EventArgs e)
+        {
+            bt_pair_USB.Visible = false;
+            cb_select_USB.Visible = true;
+            cb_select_USB_SelectedIndexChanged(sender, e);
         }
     }
 }
