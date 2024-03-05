@@ -35,6 +35,8 @@ namespace customwebbridge
         private void bt_usb_Click(object sender, EventArgs e)
         {
             PrintXmlList(items);
+
+
         }
         private void ShowErrorMessage(Exception ex)
         {
@@ -86,16 +88,18 @@ namespace customwebbridge
 
                 // Assuming XML structure contains <Text> element
                 Parser parser = new Parser(selectedFilePath);
+                items.Clear();
                 parser.Parsing(items);
 
-                //String str = "";
+                str = "";
                 for (int i = 0; i < items.Count; i++)
                 {
-                    str = items[i].ToString();
-                    MessageBox.Show(str);
+                    str += items[i].ToString();
+                    
                 }
+                MessageBox.Show(str);
 
-                MessageBox.Show("count:" + items.Count.ToString());
+                //MessageBox.Show("count:" + items.Count.ToString());
             }
             catch (Exception ex)
             {
@@ -108,6 +112,14 @@ namespace customwebbridge
                 try
                 {
 
+                Printable printable = new Printable();
+                foreach(BaseItem item in items)
+                {
+                    printable.PrintItem(item, dev);
+                }
+                
+
+                /*
                     PrintableText pt = new PrintableText((TextItem)items[0]);
                     //dev.PrintText(pt.Testo.Text, pt.FontSettings1, pt.BAddLF);
 
@@ -118,7 +130,9 @@ namespace customwebbridge
                     //Exec the print of the text
                     dev.Cut(CuCustomWndDevice.CutType.CUT_PARTIAL);
 
-                }
+                */
+
+            }
                 catch (Exception ex)
                 {
                     ShowErrorMessage(ex);

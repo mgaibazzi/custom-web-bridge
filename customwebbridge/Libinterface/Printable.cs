@@ -10,7 +10,7 @@ namespace customwebbridge.Libinterface
     internal class Printable
     {
         public Printable() { }
-        public void PrintItems(BaseItem Item, CuCustomWndDevice dev)
+        public void PrintItem(BaseItem Item, CuCustomWndDevice dev)
         {
             if (Item.Itemtype == BaseItem.ItemType.barcode)
             {
