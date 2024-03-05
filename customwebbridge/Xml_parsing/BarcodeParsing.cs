@@ -92,7 +92,7 @@ namespace customwebbridge.Xml_parsing
                 }
                 if (textNode.Attributes["height"]?.Value != null)
                 {
-                    width = Convert.ToInt32(textNode.Attributes["height"]?.Value);
+                    height = Convert.ToInt32(textNode.Attributes["height"]?.Value);
                     item.Height = height;
                 }
                 if (textNode.Attributes["size"]?.Value != null)
@@ -112,9 +112,13 @@ namespace customwebbridge.Xml_parsing
                     if(ecl=="default")
                     {
                         item.ErrorCorrectionLevel1 = Barcode2D.ErrorCorrectionLevel.Default;
+                        //ecl = "Default";
                     }
-                    errorcorrectionlevel = (Barcode2D.ErrorCorrectionLevel)Enum.Parse(typeof(Barcode2D.ErrorCorrectionLevel), ecl);//Casting from string to enum
-                    item.ErrorCorrectionLevel1 = errorcorrectionlevel;
+                    else
+                    {
+                        errorcorrectionlevel = (Barcode2D.ErrorCorrectionLevel)Enum.Parse(typeof(Barcode2D.ErrorCorrectionLevel), ecl);//Casting from string to enum
+                        item.ErrorCorrectionLevel1 = errorcorrectionlevel;
+                    }
                 }
                 item.setCommonVariabiles(baseFormat);
                 items.Add(item);
