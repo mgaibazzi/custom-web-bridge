@@ -21,6 +21,7 @@ namespace customwebbridge
         CuCustomWndAPIWrap customWndAPIWrap = null;
         CuCustomWndDevice dev = null;
         List<BaseItem> items = new List<BaseItem>();
+        String str = "";
 
         string selectedFilePath;
         
@@ -108,6 +109,13 @@ namespace customwebbridge
                 Parser parser = new Parser(selectedFilePath);
                 parser.Parsing(items);
 
+                //String str = "";
+                for(int i=0; i<items.Count; i++)
+                {
+                    str = items[i].ToString();
+                    MessageBox.Show(str);
+                }
+
                 MessageBox.Show("count:"+items.Count.ToString());
             }
             catch (Exception ex) 
@@ -115,7 +123,6 @@ namespace customwebbridge
                 ShowErrorMessage(ex); 
                 return; 
             }
-            
         }
         private void PrintXmlList(List<BaseItem> items)
         {
@@ -145,7 +152,7 @@ namespace customwebbridge
                             PrintFontSettings pfs = new PrintFontSettings();
 
                             //dev.PrintText(pt.Testo.Text, pfs, pt.BAddLF);
-                            dev.PrintText(pt.Testo.Text, pt.FontSettings1, pt.BAddLF);
+                            dev.PrintText(str, pt.FontSettings1, pt.BAddLF);
                             //Exec the print of the text
                         }
                     }
@@ -173,11 +180,6 @@ namespace customwebbridge
             {
                 MessageBox.Show("No USB devices found.");
             }
-
-
         }
-
-        
     }
 }
-

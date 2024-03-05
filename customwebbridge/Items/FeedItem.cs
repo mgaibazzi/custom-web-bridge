@@ -23,7 +23,6 @@ namespace customwebbridge
             this.Unit = unit;
         }
 
-
         public int Line
         {
             get { return line; }
@@ -51,6 +50,13 @@ namespace customwebbridge
                 else unit = value;
 
             }
+        }
+        public override string ToString()
+        {
+            string str = "Unit: " + Unit + "\n"
+                    +"Line: " + Line + "\n"
+                    + base.ToString();
+            return str;
         }
     }
 }

@@ -21,30 +21,40 @@ namespace customwebbridge.Xml_parsing
             get { return path; }
             set { if (value != null) path = value; else throw new Exception("String null"); }
         }
-        public void ParseNodeXml(List<BaseItem> items,XmlNode feedNode)
+        public void ParseNodeXml(List<BaseItem> items,XmlNode feedNode, BaseItem baseFormat)
         {
             int line;
             int unit;
             try
             {
-
+                FeedItem feedItem = new FeedItem();
 
                 unit = 0;
-                    line = 0;
-                    if (feedNode.Attributes["line"]?.Value != null)
-                        line = Convert.ToInt32(feedNode.Attributes["line"].Value);
+                line = 0;
+                if (feedNode.Attributes["line"]?.Value != null)
+                { 
+                    line = Convert.ToInt32(feedNode.Attributes["line"].Value);
+                    feedItem.Line = line;
+                }
+                else
+                {
+                    if (feedNode.Attributes["unit"]?.Value != null)
+                    {
+                        unit = Convert.ToInt32(feedNode.Attributes["unit"].Value);
+                        feedItem.Unit = unit;
+                    }
                     else
                     {
-                        if (feedNode.Attributes["unit"]?.Value != null)
-                            unit = Convert.ToInt32(feedNode.Attributes["unit"].Value);
-                        else
+                        if (feedNode.Attributes[""]?.Value == null)
                         {
-                            if (feedNode.Attributes[""]?.Value == null)
-                                line++;
+                            line++;
+                            feedItem.Line = line;
                         }
                     }
+                }
 
-                FeedItem feedItem = new FeedItem(line, unit);
+                
+                feedItem.setCommonVariabiles(baseFormat);
                 items.Add(feedItem);
             }
             catch (Exception e)

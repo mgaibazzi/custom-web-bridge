@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using static customwebbridge.OthersItem;
 
 namespace customwebbridge
 {
@@ -112,5 +114,17 @@ namespace customwebbridge
         internal Type Type1 { get => type; set => type = value; }
         internal Connector Connector1 { get => connector; set => connector = value; }
         internal ONTime OnTime { get => onTime; set => onTime = value; }
+
+        public override string ToString()
+        {
+            string str = "OnTime: " + OnTime + "\n"
+                            + "Pattern: " + Pattern1 + "\n"
+                            + "Type: " + Type1 + "\n"
+                            + "Connector: " + Connector1 + "\n"
+                            + "Repeat: " + Repeat + "\n"
+                            + "Reset: " + Reset + "\n"
+                            + "Esc: " + Esc;
+            return str;
+        }
     }
 }

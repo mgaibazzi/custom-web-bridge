@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static customwebbridge.BaseItem;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace customwebbridge
 {
@@ -152,6 +153,19 @@ public class Barcode2D : Barcode
 
     public ErrorCorrectionLevel ErrorCorrectionLevel1 { get => errorCorrectionLevel; set => errorCorrectionLevel = value; }
     public Type TypeQRCode { get => typeQRCode; set => typeQRCode = value; }
+
+    public override string ToString()
+    {
+        string str = "Data: " + Data + "\n"
+                        + "Size: " + S_size + "\n"
+                        + "Width: " + Width.ToString() + "\n"
+                        + "Height: " + Height.ToString() + "\n"
+                        + "ErrorCorrectionLevel: " + ErrorCorrectionLevel1 + "\n"
+                        + "TypeQRCode: " + TypeQRCode + "\n"
+                        + "ErrorCorrectionLevelAztecCode: " + ErrorCorrectionLevelAztecCode + "\n"
+                        + base.ToString();
+        return str;
+    }
 }
 
 public class Barcode1D : Barcode
@@ -228,5 +242,16 @@ public class Barcode1D : Barcode
     //public Type BarcodeType { get => BarcodeType; set => BarcodeType = value; }
 
     public Type BarcodeType { get => barcodeType; set => barcodeType = value; }
-}
 
+    public override string ToString()
+    {
+        string str =    "Data: " + Data + "\n"
+                        +"Hri: " + Hri1  + "\n"
+                        +"Width: " + Width.ToString() + "\n"
+                        +"Height: " + Height.ToString() + "\n"
+                        +"Font: " + Font.ToString() + "\n"
+                        +"BarcodeType: " + BarcodeType.ToString() + "\n"
+                        +base.ToString();
+        return str;
+    }
+}

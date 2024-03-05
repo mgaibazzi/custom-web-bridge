@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System;   
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,28 +13,28 @@ namespace customwebbridge.Xml_parsing
 {
     internal class OtherParsing
     {
-        public void BuzzerParser(XmlNode textNode, List<BaseItem> items)
+        public void BuzzerParser(XmlNode textNode, List<BaseItem> items)//Parsing Buzzer
         {
             OthersItem.Pattern pattern = OthersItem.Pattern.pattern_a;
             int repeat = 1;
-            string pt = "";
+            string pt = "";//support variables that we use to cast an enum
 
-            OthersItem itemFormat = new OthersItem();
+            OthersItem item= new OthersItem();
 
             try
             {                
                 if (textNode.Attributes["repeat"]?.Value != null)
                 {
                     repeat = Convert.ToInt32(textNode.Attributes["repeat"]?.Value);
-                    itemFormat.Repeat = repeat;
+                    item.Repeat = repeat;
                 }
                 if (textNode.Attributes["pattern"]?.Value != null)
                 {
                     pt = textNode.Attributes["pattern"]?.Value;
                     pattern = (OthersItem.Pattern)Enum.Parse(typeof(OthersItem.Pattern), pt);//Casting from string to enum
-                    itemFormat.Pattern1 = pattern;
+                    item.Pattern1 = pattern;
                 }
-                items.Add(itemFormat);
+                items.Add(item);
             }
             catch (Exception ex)
             {
@@ -42,22 +42,22 @@ namespace customwebbridge.Xml_parsing
                 MessageBox.Show("Error parsing XML: " + ex.Message, "XML Parsing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void CutParser(XmlNode textNode, List<BaseItem> items)
+        public void CutParser(XmlNode textNode, List<BaseItem> items)//Parsing CUT
         {
             OthersItem.Type type = OthersItem.Type.feed;
-            string ty = "";
+            string ty = "";//support variables that we use to cast an enum
 
-            OthersItem itemFormat = new OthersItem();
+            OthersItem item = new OthersItem();
 
             try
             {
-                if (textNode.Attributes["pattern"]?.Value != null)
+                if (textNode.Attributes["type"]?.Value != null)
                 {
-                    ty = textNode.Attributes["pattern"]?.Value;
+                    ty = textNode.Attributes["type"]?.Value;
                     type = (OthersItem.Type)Enum.Parse(typeof(OthersItem.Type), ty);//Casting from string to enum
-                    itemFormat.Type1 = type;
+                    item.Type1 = type;
                 }
-                items.Add(itemFormat);
+                items.Add(item);
             }
             catch (Exception ex)
             {
@@ -65,30 +65,31 @@ namespace customwebbridge.Xml_parsing
                 MessageBox.Show("Error parsing XML: " + ex.Message, "XML Parsing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void DrawerParser(XmlNode textNode, List<BaseItem> items)
+        public void DrawerParser(XmlNode textNode, List<BaseItem> items)//parsing DRAWER
         {
             OthersItem.ONTime oNTime = OthersItem.ONTime.pulse_100;
             OthersItem.Connector connector = OthersItem.Connector.drawer_1;
-            string ot = "";
-            string cn = "";
+            string ot = "";//support variables that we use to cast an enum
+            string cn = "";//support variables that we use to cast an enum
 
-            OthersItem itemFormat = new OthersItem();
+            OthersItem item = new OthersItem();
 
             try
             {
+                if (textNode.Attributes["drawer"]?.Value != null)
+                {
+                    cn = textNode.Attributes["drawer"]?.Value;
+                    connector = (OthersItem.Connector)Enum.Parse(typeof(OthersItem.Connector), cn);//Casting from string to enum
+                    item.Connector1 = connector;
+                }
                 if (textNode.Attributes["time"]?.Value != null)
                 {
                     ot = textNode.Attributes["time"]?.Value;
                     oNTime = (OthersItem.ONTime)Enum.Parse(typeof(OthersItem.ONTime), ot);//Casting from string to enum
-                    itemFormat.OnTime = oNTime;
+                    item.OnTime = oNTime;
                 }
-                if (textNode.Attributes["drawer"]?.Value != null)
-                {
-                    ot = textNode.Attributes["drawer"]?.Value;
-                    connector = (OthersItem.Connector)Enum.Parse(typeof(OthersItem.Connector), cn);//Casting from string to enum
-                    itemFormat.Connector1 = connector;
-                }
-                items.Add(itemFormat);
+                
+                items.Add(item);
             }
             catch (Exception ex)
             {
@@ -96,21 +97,17 @@ namespace customwebbridge.Xml_parsing
                 MessageBox.Show("Error parsing XML: " + ex.Message, "XML Parsing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void ResetParser(XmlNode textNode, List<BaseItem> items)
+        //
+        public void ResetParser(XmlNode textNode, List<BaseItem> items)//Parsing RESET
         {
             bool reset = false;
-            string rt = "";
 
-            OthersItem itemFormat = new OthersItem();
+            OthersItem item = new OthersItem();
 
             try
             {
-                if (textNode.Attributes[""]?.Value != null)
-                {
-                    reset = Convert.ToBoolean(textNode.Attributes[""]?.Value);
-                    itemFormat.Reset = reset;
-                }
-                items.Add(itemFormat);
+                item.Reset = true;
+                items.Add(item);
             }
             catch (Exception ex)
             {
@@ -118,16 +115,16 @@ namespace customwebbridge.Xml_parsing
                 MessageBox.Show("Error parsing XML: " + ex.Message, "XML Parsing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void EscParser(XmlNode textNode, List<BaseItem> items)
+        public void EscParser(XmlNode textNode, List<BaseItem> items)//parsing ESC
         {
             string esc = "1b2a210100555550a";
 
-            OthersItem itemFormat = new OthersItem();
+            OthersItem item = new OthersItem();
 
             try
             {
                 esc = textNode.InnerText;
-                items.Add(itemFormat);
+                items.Add(item);
             }
             catch (Exception ex)
             {

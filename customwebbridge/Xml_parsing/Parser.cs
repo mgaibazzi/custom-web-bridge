@@ -11,6 +11,15 @@ namespace customwebbridge.Xml_parsing
     internal class Parser
     {
         string selectedFilePath;
+        /*public enum TextAlign
+        {
+            left,
+            center,
+            right
+        }
+        public int linespace = 30;
+        public bool rotate = false;
+        TextAlign textAlign = TextAlign.left;*/
         public Parser(string selectedFilePath)
         { this.selectedFilePath = selectedFilePath; }
 
@@ -22,37 +31,65 @@ namespace customwebbridge.Xml_parsing
         {
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(selectedFilePath);
+            
             foreach (XmlNode node in xmlDoc.DocumentElement.ChildNodes)
             {
                 
-                MessageBox.Show(node.Name);
+                //MessageBox.Show(node.Name);
                 if (node.Name == "text")
                 {
                     textParsing.ParseNodeXml(node, items);
+
                 }
                 else
                 {
                     if (node.Name == "feed")
                     {
-                        feedParsing.ParseNodeXml(items, node);
+                        feedParsing.ParseNodeXml(items, node, textParsing.GetFormat());
                     }
                     else 
                     {
                         if (node.Name == "barcode")
                         {
-                            barcodeParsing.Barcode1DParsing(node,items);
+                            barcodeParsing.Barcode1DParsing(node,items, textParsing.GetFormat());
                         }
                         else
                         {
                             if(node.Name == "symbol")
                             {
-                                barcodeParsing.Barcode2DParsing(node, items);
+                                barcodeParsing.Barcode2DParsing(node, items, textParsing.GetFormat());
+                            }
+                            else
+                            {
+                                OtherParsing otherParsing = new OtherParsing();
+                                if(node.Name =="sound")
+                                    otherParsing.BuzzerParser(node, items);
+                                else
+                                {
+                                    if(node.Name == "cut" )
+                                        otherParsing.CutParser(node, items);
+                                    else 
+                                    { 
+                                        if(node.Name == "pulse")
+                                            otherParsing.DrawerParser(node, items); 
+                                        else
+                                        {
+                                            if(node.Name == "reset")
+                                                otherParsing.ResetParser(node, items);
+                                            else
+                                            {
+                                                if (node.Name == "command")
+                                                    otherParsing.EscParser(node, items);
+                                                else throw new Exception("Value not found!");
+                                            }
+                                        }    
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }               
-
         }
     }
 }
