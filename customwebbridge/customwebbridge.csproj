@@ -82,6 +82,9 @@
     <Compile Include="Items\ImageItem.cs" />
     <Compile Include="Items\OtherItem.cs" />
     <Compile Include="Items\TextItem.cs" />
+    <Compile Include="Libinterface\PrintableBarcode.cs" />
+    <Compile Include="Libinterface\PrintableFeed.cs" />
+    <Compile Include="Libinterface\PrintableOthers.cs" />
     <Compile Include="Libinterface\PrintableText.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

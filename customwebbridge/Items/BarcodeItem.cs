@@ -31,9 +31,9 @@ namespace customwebbridge
         public Barcode(ItemType pType) : base(pType)
         {
             pType = ItemType.none;
-            Width = 2;
-            Height = 2;
-            Data = "";
+            Width = 276;
+            Height = 276;
+            Data = "765";
         }
 
         //Barcode constructor
@@ -95,12 +95,12 @@ public class Barcode2D : Barcode
 
     {
         TypeQRCode = Type.pdf417_standard;
-        Width = 2;
-        Height = 2;
-        Data = "";
+        Width = 105;
+        Height = 100;
+        Data = "2345678";
         ErrorCorrectionLevel1 = ErrorCorrectionLevel.Default;
         ErrorCorrectionLevelAztecCode = 23;
-        S_size = 0;
+        S_size = 1220;
 
     }
 
@@ -202,11 +202,10 @@ public class Barcode1D : Barcode
 
     public Barcode1D(int width, int height, string data) : base(ItemType.barcode, width, height, data)//default constructor
     {
-        ;
-        barcodeType = Type.code39;
-        Width = 2;
-        Height = 32;
-        Data = "12345";
+        barcodeType = Type.ean13;
+        Width = 500;
+        Height = 100;
+        Data = "1234567890123";
         Hri1 = HRI.None;
         Font1 = FontStyle.font_a;
     }
@@ -226,6 +225,6 @@ public class Barcode1D : Barcode
     //getter & setter
     public FontStyle Font1 { get => Font; set => Font = value; }
     public HRI Hri1 { get => Hri; set => Hri = value; }
-    public Type BarcodeType { get => BarcodeType; set => BarcodeType = value; }
+    public Type BarcodeType { get => barcodeType; set => barcodeType = value; }
 }
 
