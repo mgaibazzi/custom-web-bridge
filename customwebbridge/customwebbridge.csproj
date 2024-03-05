@@ -78,13 +78,19 @@
     </Compile>
     <Compile Include="Items\BarcodeItem.cs" />
     <Compile Include="Items\BaseItem.cs" />
+    <Compile Include="Items\BuzzerItem.cs" />
+    <Compile Include="Items\CutItem.cs" />
+    <Compile Include="Items\DrawerItem.cs" />
+    <Compile Include="Items\EscItem.cs" />
     <Compile Include="Items\FeedItem.cs" />
     <Compile Include="Items\ImageItem.cs" />
     <Compile Include="Items\OtherItem.cs" />
+    <Compile Include="Items\ResetItem.cs" />
     <Compile Include="Items\TextItem.cs" />
     <Compile Include="Libinterface\PrintableBarcode.cs" />
+    <Compile Include="Libinterface\PrintableCut.cs" />
     <Compile Include="Libinterface\PrintableFeed.cs" />
-    <Compile Include="Libinterface\PrintableOthers.cs" />
+    <Compile Include="Libinterface\PrintableDrawer.cs" />
     <Compile Include="Libinterface\PrintableText.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

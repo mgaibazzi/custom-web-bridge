@@ -4,30 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Custom.CuCustomWndAPI;
+using customwebbridge.Items;
 
 namespace customwebbridge.Libinterface
 {
-    internal class PrintableOthers
+    internal class PrintableDrawer
     {
-        CuCustomWndDevice.CutType cutType;
         CuCustomWndDevice.CashDrawerType cashDrawerType;
         //default constructor
-        public PrintableOthers(OthersItem othersItem)
+        public PrintableDrawer(DrawerItem othersItem)
         {
-            SelectCutType();
             SelectDrawer(othersItem);
         }
         //Getter and setter
-        public CuCustomWndDevice.CutType CutType { get => cutType; set => cutType = value; }
         public CuCustomWndDevice.CashDrawerType CashDrawerType { get => cashDrawerType; set => cashDrawerType = value; }
-
-        private void SelectCutType()
+        private void SelectDrawer(DrawerItem othersItem)
         {
-            cutType = CuCustomWndDevice.CutType.CUT_PARTIAL;
-        }
-        private void SelectDrawer(OthersItem othersItem)
-        {
-            if(othersItem.Connector1==OthersItem.Connector.drawer_1)
+            if(othersItem.Connector1==DrawerItem.Connector.drawer_1)
             {
                 CashDrawerType = CuCustomWndDevice.CashDrawerType.CASH_DRAWER_1;
             }

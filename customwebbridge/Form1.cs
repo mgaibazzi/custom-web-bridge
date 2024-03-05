@@ -84,27 +84,6 @@ namespace customwebbridge
                 DialogResult result = openFileDialog.ShowDialog();
                 selectedFilePath = openFileDialog.FileName;
 
-                //textParsing.ParseXml(items);
-                //feedParsing.ParseXml(items);
-                // Load XML document
-                /*XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load(selectedFilePath);
-                foreach(XmlNode node in xmlDoc.DocumentElement.ChildNodes)
-                {
-                    MessageBox.Show(node.Name);
-                    if (node.Name == "text")
-                    {
-                        textParsing.ParseXml(items);
-                    }
-                    else
-                    {
-                        if (node.Name == "feed")
-                        {
-                            feedParsing.ParseXml(items);
-                        }
-                    }
-                }*/
-
                 // Assuming XML structure contains <Text> element
                 Parser parser = new Parser(selectedFilePath);
                 parser.Parsing(items);
@@ -179,6 +158,13 @@ namespace customwebbridge
             else
             {
                 MessageBox.Show("No USB devices found.");
+            }
+        }
+        private void PrintAll(List<BaseItem> items) 
+        { 
+            for(int i = 0; i < items.Count; i++) 
+            { 
+                
             }
         }
     }
