@@ -12,7 +12,8 @@ namespace customwebbridge
         public enum Mode
         {
             mono,
-            gray16
+            gray16,
+            gray256
         }
         public enum Color
         {
@@ -27,7 +28,7 @@ namespace customwebbridge
             error_diffusion,
             threshold
         }*/
-
+         
         int width;//1-256
         int height;//1-256
         string strImage = "";   //codified image

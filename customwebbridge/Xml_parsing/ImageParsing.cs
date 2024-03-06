@@ -1,4 +1,5 @@
-﻿using System;
+﻿using customwebbridge.Decode;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace customwebbridge.Xml_parsing
 {
     public class ImageParsing
     {
+        DecodeBase64 decodeBase64 = new DecodeBase64();
         public void ParseNodeXml(XmlNode imageNode, List<BaseItem> items)
         {
             Mode mode = new Mode();
@@ -48,6 +50,7 @@ namespace customwebbridge.Xml_parsing
                     mode = (Mode)Enum.Parse(typeof(Mode), md);//Casting from string to enum
                     imageItem.Mode1 = mode;
                 }
+                decodeBase64.Decode(imageItem);
                 items.Add(imageItem);
             }
             catch (Exception ex)

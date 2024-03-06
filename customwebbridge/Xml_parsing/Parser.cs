@@ -1,4 +1,5 @@
-﻿using System;
+﻿using customwebbridge.Decode;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,7 @@ namespace customwebbridge.Xml_parsing
         FeedParsing feedParsing = new FeedParsing();
         BarcodeParsing barcodeParsing = new BarcodeParsing();
         ImageParsing imageParsing = new ImageParsing();
+        //DecodeBase64 decodeBase64 = new DecodeBase64();
         public void Parsing(List<BaseItem> items)
         {
             XmlDocument xmlDoc = new XmlDocument();
@@ -83,8 +85,11 @@ namespace customwebbridge.Xml_parsing
                                                     otherParsing.EscParser(node, items);
                                                 else
                                                 {
-                                                    if(node.Name=="image")
-                                                        imageParsing.ParseNodeXml(node,items);
+                                                    if (node.Name == "image")
+                                                    {
+                                                        imageParsing.ParseNodeXml(node, items);
+                                                        //decodeBase64.Decode(items)
+                                                    }
                                                     else throw new Exception("Value not found!");
                                                 } 
                                             }
