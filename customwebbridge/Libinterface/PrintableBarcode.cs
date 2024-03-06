@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Custom.CuCustomWndAPI;
+using static Custom.CuCustomWndAPI.PrintFontSettings;
 
 namespace customwebbridge.Libinterface
 {
@@ -12,21 +13,35 @@ namespace customwebbridge.Libinterface
     {
         string barcode_data;
         PrintBarcodeSettings barcodeSettings=new PrintBarcodeSettings();
+        /*private void FontJustification(TextItem testo)
+        {
+            if(testo.TextAlign1==TextItem.TextAlign.left)    
+            { 
+                FontSettings1.Justification= PrintFontSettings.FontJustification.FONT_JUSTIFICATION_LEFT;
+            }
+            else if (testo.TextAlign1 == TextItem.TextAlign.center)
+            {
+                FontSettings1.Justification = PrintFontSettings.FontJustification.FONT_JUSTIFICATION_CENTER;
+            }
+            else FontSettings1.Justification = PrintFontSettings.FontJustification.FONT_JUSTIFICATION_RIGHT;
 
+        }*/
         public PrintableBarcode(Barcode2D barcode2D)
         {
             Barcode_data = barcode2D.Data;
             convert_barcode2dType(barcode2D);
             BarcodeSettings.BarcodeHeight=Convert.ToUInt32(barcode2D.Height*100);
             BarcodeSettings.BarcodeWidth = Convert.ToUInt32(barcode2D.Width*100);
+            FontJustification(barcode2D);
         }
         public PrintableBarcode(Barcode1D barcode1D) 
         {
             Barcode_data=barcode1D.Data;    
             convert_barcode1dType(barcode1D);
             convert_HRI(barcode1D);
-            BarcodeSettings.BarcodeHeight = Convert.ToUInt32(barcode1D.Height*100);
+            BarcodeSettings.BarcodeHeight = Convert.ToUInt32(barcode1D.Height);
             BarcodeSettings.BarcodeWidth = Convert.ToUInt32(barcode1D.Width*100);
+            FontJustification(barcode1D);
         }
 
         public string Barcode_data { get => barcode_data; set => barcode_data = value; }
@@ -108,17 +123,18 @@ namespace customwebbridge.Libinterface
                 BarcodeSettings.HRIPosition = PrintBarcodeSettings.BarcodeHRIPosition.BARCODE_HRI_TOPBOTTOM;
             }
         }
-        /*private void convert_align()
+        private void FontJustification(Barcode barcode)
         {
-            if()
-                {
-                    
-                }
-            else if()
-                {
-                    
-                }
-             else
-        }*/
+            if (barcode.TextAlign1 == BaseItem.TextAlign.left)
+            {
+                BarcodeSettings.AlignMode = PrintBarcodeSettings.BarcodeAlign.BARCODE_ALIGN_TO_LEFT;
+            }
+            else if (barcode.TextAlign1 == TextItem.TextAlign.center)
+            {
+                BarcodeSettings.AlignMode = PrintBarcodeSettings.BarcodeAlign.BARCODE_ALIGN_TO_CENTER;
+            }
+            else BarcodeSettings.AlignMode = PrintBarcodeSettings.BarcodeAlign.BARCODE_ALIGN_TO_RIGHT;
+
+        }
     }
 }
