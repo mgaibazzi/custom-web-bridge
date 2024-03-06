@@ -22,21 +22,19 @@ namespace customwebbridge
         CuCustomWndDevice dev = null;
         List<BaseItem> items = new List<BaseItem>();
         String str = "";
+        USBDevice[] usbArray = null;
 
         string selectedFilePath;
 
         public Form1()
         {
             InitializeComponent();
-            bt_usb.Visible = false;
-
+            bt_print.Visible = false;
         }
 
-        private void bt_usb_Click(object sender, EventArgs e)
+        private void bt_print_Click(object sender, EventArgs e)
         {
             PrintXmlList(items);
-
-
         }
         private void ShowErrorMessage(Exception ex)
         {
@@ -65,7 +63,7 @@ namespace customwebbridge
                 //Create the Class
                 customWndAPIWrap = new CuCustomWndAPIWrap(CuCustomWndAPIWrap.CcwLogVerbosity.CCW_LOG_DEEP_DEBUG, null);
                 //Init the library
-                customWndAPIWrap.InitLibrary();  
+                customWndAPIWrap.InitLibrary();
             }
             catch (Exception ex)
             {
@@ -80,7 +78,6 @@ namespace customwebbridge
 
             openFileDialog.DefaultExt = "xml";
             openFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
-            bt_usb.Visible = true;
             try
             {
                 DialogResult result = openFileDialog.ShowDialog();
@@ -95,73 +92,29 @@ namespace customwebbridge
                 for (int i = 0; i < items.Count; i++)
                 {
                     str += items[i].ToString();
-                    
-                }
-                MessageBox.Show(str);
 
-                //MessageBox.Show("count:" + items.Count.ToString());
+                }
+                //MessageBox.Show(str);
             }
             catch (Exception ex)
             {
                 ShowErrorMessage(ex);
                 return;
             }
+            bt_pair_USB.Visible = true;
         }
         private void PrintXmlList(List<BaseItem> items)
         {
-                try
-                {
-
-                Printable printable = new Printable();
-                foreach(BaseItem item in items)
-                {
-                    printable.PrintItem(item, dev);
-                }
-                
-
-                /*
-                    PrintableText pt = new PrintableText((TextItem)items[0]);
-                    //dev.PrintText(pt.Testo.Text, pt.FontSettings1, pt.BAddLF);
-
-                    PrintFontSettings pfs = new PrintFontSettings();
-                str = items[0].ToString();
-                //dev.PrintText(pt.Testo.Text, pfs, pt.BAddLF);
-                dev.PrintText(str, pt.FontSettings1, pt.BAddLF);
-                    //Exec the print of the text
-                    dev.Cut(CuCustomWndDevice.CutType.CUT_PARTIAL);
-
-                */
-
-            }
-                catch (Exception ex)
-                {
-                    ShowErrorMessage(ex);
-                }
-        }
-
-        private void cb_select_USB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            USBDevice[] usbArray = customWndAPIWrap.EnumUSBDevices();
-            String[] strusbArray = new String[usbArray.Length];
 
 
-            for (int i = 0; i < usbArray.Length; i++)
-            {
-                USBDevice u = usbArray[i];
-                strusbArray[i] = u.SerialNumber;
-                cb_select_USB.Items.Add(strusbArray[i]);
-
-            }
-
-            int selected = cb_select_USB.SelectedIndex;
-
-            if (cb_select_USB.SelectedIndex != -1)
+            if ( (cb_select_USB.SelectedIndex != -1) && (usbArray!=null) && (usbArray.Length > 0) )
             {
                 try
                 {
+                    int selected = cb_select_USB.SelectedIndex;
                     //Open the device
                     dev = customWndAPIWrap.OpenPrinterUSB(usbArray[selected]);
-                    MessageBox.Show("USB device paired");
+                    bt_print.Visible = true;
                 }
                 catch (Exception ex)
                 {
@@ -169,13 +122,44 @@ namespace customwebbridge
                     return;
                 }
             }
+
+
+            try
+            {
+
+                Printable printable = new Printable();
+                foreach (BaseItem item in items)
+                {
+                    printable.PrintItem(item, dev);
+                }
+                dev.Terminate();
+
+            }
+            catch (Exception ex)
+            {
+                ShowErrorMessage(ex);
+            }
+        }
+
+        private void cb_select_USB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bt_print.Visible = true;
         }
 
         private void bt_pair_USB_Click(object sender, EventArgs e)
         {
-            bt_pair_USB.Visible = false;
+            cb_select_USB.SelectedIndex = -1;
+            cb_select_USB.Items.Clear();
             cb_select_USB.Visible = true;
-            cb_select_USB_SelectedIndexChanged(sender, e);
+            usbArray = customWndAPIWrap.EnumUSBDevices();
+            String[] strusbArray = new String[usbArray.Length];
+
+            for (int i = 0; i < usbArray.Length; i++)
+            {
+                USBDevice u = usbArray[i];
+                strusbArray[i] = u.SerialNumber;
+                cb_select_USB.Items.Add(strusbArray[i]);
+            }
         }
     }
 }
