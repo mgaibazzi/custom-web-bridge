@@ -31,6 +31,22 @@ namespace customwebbridge.Libinterface
             Font_size_table_Height(this.testo.Height);
             Font_size_table_width(this.testo.Width);
             Font_Type_table();
+            FontJustification(this.testo);
+            if(testo.DoubleHeight == true) 
+            {
+                if(this.testo.Height>4)
+                    Font_size_table_Height(8);
+                else
+                    Font_size_table_Height(this.testo.Height * 2);
+            }
+
+            if (testo.DoubleWidth == true)
+            {
+                if(this.testo.Width>4)
+                    Font_size_table_width(8);
+                else
+                    Font_size_table_width(this.testo.Width * 2);
+            }
         }
         //getter and setter 
         internal TextItem Testo { get => testo; set => testo = value; }
@@ -128,6 +144,19 @@ namespace customwebbridge.Libinterface
             {
                 FontSettings1.CharFontType = PrintFontSettings.FontType.FONT_TYPE_1;
             }
+        }
+        private void FontJustification(TextItem testo)
+        {
+            if(testo.TextAlign1==TextItem.TextAlign.left)    
+            { 
+                FontSettings1.Justification= PrintFontSettings.FontJustification.FONT_JUSTIFICATION_LEFT;
+            }
+            else if (testo.TextAlign1 == TextItem.TextAlign.center)
+            {
+                FontSettings1.Justification = PrintFontSettings.FontJustification.FONT_JUSTIFICATION_CENTER;
+            }
+            else FontSettings1.Justification = PrintFontSettings.FontJustification.FONT_JUSTIFICATION_RIGHT;
+
         }
     }
 }

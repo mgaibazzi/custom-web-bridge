@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.bt_usb = new System.Windows.Forms.Button();
+            this.bt_print = new System.Windows.Forms.Button();
             this.bt_open_file = new System.Windows.Forms.Button();
             this.cb_select_USB = new System.Windows.Forms.ComboBox();
             this.bt_pair_USB = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // bt_usb
+            // bt_print
             // 
-            this.bt_usb.Location = new System.Drawing.Point(173, 294);
-            this.bt_usb.Name = "bt_usb";
-            this.bt_usb.Size = new System.Drawing.Size(144, 68);
-            this.bt_usb.TabIndex = 0;
-            this.bt_usb.Text = "PRINT";
-            this.bt_usb.UseVisualStyleBackColor = true;
-            this.bt_usb.Click += new System.EventHandler(this.bt_usb_Click);
+            this.bt_print.Location = new System.Drawing.Point(173, 294);
+            this.bt_print.Name = "bt_print";
+            this.bt_print.Size = new System.Drawing.Size(144, 68);
+            this.bt_print.TabIndex = 0;
+            this.bt_print.Text = "PRINT";
+            this.bt_print.UseVisualStyleBackColor = true;
+            this.bt_print.Click += new System.EventHandler(this.bt_print_Click);
             // 
             // bt_open_file
             // 
@@ -57,7 +57,7 @@
             // cb_select_USB
             // 
             this.cb_select_USB.FormattingEnabled = true;
-            this.cb_select_USB.Location = new System.Drawing.Point(173, 180);
+            this.cb_select_USB.Location = new System.Drawing.Point(171, 251);
             this.cb_select_USB.Name = "cb_select_USB";
             this.cb_select_USB.Size = new System.Drawing.Size(144, 28);
             this.cb_select_USB.TabIndex = 3;
@@ -66,12 +66,13 @@
             // 
             // bt_pair_USB
             // 
-            this.bt_pair_USB.Location = new System.Drawing.Point(173, 180);
+            this.bt_pair_USB.Location = new System.Drawing.Point(173, 166);
             this.bt_pair_USB.Name = "bt_pair_USB";
             this.bt_pair_USB.Size = new System.Drawing.Size(144, 66);
             this.bt_pair_USB.TabIndex = 4;
             this.bt_pair_USB.Text = "Pair";
             this.bt_pair_USB.UseVisualStyleBackColor = true;
+            this.bt_pair_USB.Visible = false;
             this.bt_pair_USB.Click += new System.EventHandler(this.bt_pair_USB_Click);
             // 
             // Form1
@@ -82,7 +83,7 @@
             this.Controls.Add(this.bt_pair_USB);
             this.Controls.Add(this.cb_select_USB);
             this.Controls.Add(this.bt_open_file);
-            this.Controls.Add(this.bt_usb);
+            this.Controls.Add(this.bt_print);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -92,7 +93,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button bt_usb;
+        private System.Windows.Forms.Button bt_print;
         private System.Windows.Forms.Button bt_open_file;
         private System.Windows.Forms.ComboBox cb_select_USB;
         private System.Windows.Forms.Button bt_pair_USB;
