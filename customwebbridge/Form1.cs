@@ -75,7 +75,7 @@ namespace customwebbridge
         private void bt_open_file_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-
+            //bt_pair_USB.Visible = true;
             openFileDialog.DefaultExt = "xml";
             openFileDialog.Filter = "XML files (*.xml)|*.xml|All files (*.*)|*.*";
             try

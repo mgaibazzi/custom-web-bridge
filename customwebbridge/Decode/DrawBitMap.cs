@@ -10,20 +10,25 @@ namespace customwebbridge.Decode
 {
     public class DrawBitMap
     {
-        public void MonoChromeBitMap(byte[] bytes, int width, int height, PixelFormat px = PixelFormat.Format1bppIndexed)
+        Bitmap bitmap;
+        public void MonoChromeBitMap(byte[] bytes,ImageItem item,PixelFormat px = PixelFormat.Format1bppIndexed)
         {
-            Bitmap bitmap = CreateBitmap(width, height, bytes,px);
+            
+            bitmap = CreateBitmap(item.Width, item.Height, bytes,px);
             bitmap.Save("outputMonoChrome.bmp", ImageFormat.Bmp);
+            item.BitMap = bitmap;
         }
-        public void GreyScale4Bit(Byte[] bytes, int width, int height, PixelFormat px = PixelFormat.Format4bppIndexed)
+        public void GreyScale4Bit(Byte[] bytes, ImageItem item, PixelFormat px = PixelFormat.Format4bppIndexed)
         {
-            Bitmap bitmap = CreateBitmap(width, height, bytes, px);
+            bitmap = CreateBitmap(item.Width, item.Height, bytes, px);
             bitmap.Save("outputGreyScale4bit.bmp", ImageFormat.Bmp);
+            item.BitMap = bitmap;
         }
-        public void GreyScale8Bit(Byte[] bytes, int width, int height, PixelFormat px = PixelFormat.Format8bppIndexed)
+        public void GreyScale8Bit(Byte[] bytes, ImageItem item, PixelFormat px = PixelFormat.Format8bppIndexed)
         {
-            Bitmap bitmap = CreateBitmap(width, height, bytes, px);
+            bitmap = CreateBitmap(item.Width, item.Height, bytes, px);
             bitmap.Save("outputGreyScale8bit.bmp", ImageFormat.Bmp);
+            item.BitMap = bitmap;
         }
         public  Bitmap CreateBitmap(int width, int height, byte[] data,PixelFormat px)
         {

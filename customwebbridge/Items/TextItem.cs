@@ -160,7 +160,7 @@ namespace customwebbridge
             get { return x; }
             set
             {
-                if (value < 0 && value > 2399)
+                if (value < 0 && value > 500)
                 {
                     throw new Exception("Uncorrect value");
                 }
@@ -173,7 +173,7 @@ namespace customwebbridge
             get { return y; }
             set
             {
-                if (value < 0 && value > 2399)
+                if (value < 0 && value > 500)
                 {
                     throw new Exception("Uncorrect value");
                 }

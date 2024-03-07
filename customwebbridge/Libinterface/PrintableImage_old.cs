@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,37 +9,36 @@ namespace customwebbridge.Libinterface
 {
     internal class PrintableImage
     {
-        Bitmap bp = null;   
+        string ImagePath = "";
         PrintImageSettings Settings = new PrintImageSettings();
         //getter and setter
-
+        public string ImagePath1 { get => ImagePath; set => ImagePath = value; }
         public PrintImageSettings Settings1 { get => Settings; set => Settings = value; }
-        public Bitmap Bp { get => bp; set => bp = value; }
 
         //Default Constructor 
-        public PrintableImage(ImageItem item)
+        public PrintableImage(string path,ImageItem item) 
         {
-            Bp = item.BitMap;
+            ImagePath1 = path;
             Settings1.PrintScaleWidthValue = (UInt32)item.Width;
             ConvertImgScaleMode(item);
-            ConvertImageAlign(item);
+            ConvertImageAlign(item); 
         }
-        public void ConvertImgScaleMode(ImageItem item)
+        public void ConvertImgScaleMode(ImageItem item) 
         {
-            if (item.Scale1 == ImageItem.Scale.fit)
+            if(item.Scale==true)
             {
                 Settings1.PrintScaleMode = PrintImageSettings.ImageScale.IMAGE_SCALE_TO_FIT;
             }
-            else if(item.Scale1==ImageItem.Scale.none)
+            else
             {
-                Settings1.PrintScaleMode = PrintImageSettings.ImageScale.IMAGE_SCALE_NONE;
+                Settings1.PrintScaleMode = PrintImageSettings.ImageScale.IMAGE_SCALE_TO_WIDTH;
 
             }
         }
         //convert the align type form the basItem class to the windows api align type
-        public void ConvertImageAlign(ImageItem item)
+        public void ConvertImageAlign(ImageItem item)   
         {
-            if (item.TextAlign1 == BaseItem.TextAlign.right)
+            if(item.TextAlign1==BaseItem.TextAlign.right)
             {
                 Settings1.ImageAlignMode = PrintImageSettings.ImageAlign.IMAGE_ALIGN_TO_RIGHT;
             }
@@ -50,6 +48,6 @@ namespace customwebbridge.Libinterface
             }
             else { Settings1.ImageAlignMode = PrintImageSettings.ImageAlign.IMAGE_ALIGN_TO_LEFT; }
         }
-
+            
     }
 }

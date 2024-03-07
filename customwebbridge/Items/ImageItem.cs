@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +11,13 @@ namespace customwebbridge
 {
     public class ImageItem : BaseItem
     {
+        Bitmap bitMap;
+        public enum Scale
+        {
+            none,
+            width,
+            fit
+        }
         public enum Mode
         {
             mono,
@@ -32,9 +41,9 @@ namespace customwebbridge
         int width;//1-256
         int height;//1-256
         string strImage = "";   //codified image
-        //bool scale;
-        //double brightness;//0.1-10
 
+        //double brightness;//0.1-10
+        Scale scale;
         Mode mode;
         Color color;
         //Halftone halftone;
@@ -45,22 +54,20 @@ namespace customwebbridge
             Width = 30;
             Height = 30;
             StrImage = "";
-            //Scale = false;
-            mode = Mode.mono;
-            //Brightness = 1.0;
-            color = Color.color_1;
+            Scale1 = Scale.none;
+            Mode1 = Mode.mono;
+            Color1 = Color.color_1;
         }
 
 
-        public ImageItem(int width, int height, string strImage,  Mode md, Color col) : base(BaseItem.ItemType.image)
+        public ImageItem(int width, int height, string strImage,  Mode md, Color col,Scale scale) : base(BaseItem.ItemType.image)
         {
             this.Width = width;
             this.Height = height;
             this.StrImage = strImage;
-            //this.scale = scale;
-            //this.brightness = brightness;
             this.color = col;
             this.mode = md;
+            this.Scale1 = scale;
         }
 
         public int Width
@@ -68,11 +75,7 @@ namespace customwebbridge
             get { return width; }
             set
             {
-                if (value < 1 && value > 256)
-                {
-                    throw new Exception("Uncorrect value");
-                }
-                else width = value;
+                 width = value;
 
             }
         }
@@ -81,32 +84,19 @@ namespace customwebbridge
             get { return height; }
             set
             {
-                if (value < 1 && value > 256)
-                {
-                    throw new Exception("Uncorrect value");
-                }
-                else height = value;
+
+                height = value;
 
             }
         }
 
-        /*public double Brightness
-        {
-            get { return brightness; }
-            set
-            {
-                if (value < 0.1 && value > 10)
-                {
-                    throw new Exception("Uncorrect value");
-                }
-                else brightness = value;
 
-            }
-        }*/
-        //public bool Scale { get => scale; set => scale = value; }
+
         public Mode Mode1 { get => mode; set => mode = value; }
         public Color Color1 { get => color; set => color = value; }
         public string StrImage { get => strImage; set => strImage = value; }
+        public Bitmap BitMap { get => bitMap; set => bitMap = value; }
+        public Scale Scale1 { get => scale; set => scale = value; }
 
         public override string ToString()
         {

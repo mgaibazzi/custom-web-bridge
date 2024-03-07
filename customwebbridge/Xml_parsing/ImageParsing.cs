@@ -18,10 +18,10 @@ namespace customwebbridge.Xml_parsing
         {
             Mode mode = new Mode();
             Color color = new Color();
+            Scale scale = new Scale();
             int width;
             int height;
-            string imageCode = "";
-            string md,cl;
+            string md,cl,sc;
 
 
             try
@@ -43,6 +43,12 @@ namespace customwebbridge.Xml_parsing
                     cl = Convert.ToString(imageNode.Attributes["color"]?.Value);
                     color = (Color)Enum.Parse(typeof(Color), cl);//Casting from string to enum
                     imageItem.Color1 = color;
+                }
+                if (imageNode.Attributes["scale"]?.Value != null)
+                {
+                    sc = Convert.ToString(imageNode.Attributes["scale"]?.Value);
+                    scale = (Scale)Enum.Parse(typeof(Scale), sc);//Casting from string to enum
+                    imageItem.Scale1 = scale;
                 }
                 if (imageNode.Attributes["mode"]?.Value != null)
                 {

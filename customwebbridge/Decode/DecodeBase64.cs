@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,14 +13,11 @@ namespace customwebbridge.Decode
     {
         string str;
         bool invertColor = true;
-        DrawBitMap drawbitmap=new DrawBitMap();
-        public void Decode(ImageItem imageItem) 
+        DrawBitMap drawbitmap = new DrawBitMap();
+        public void Decode(ImageItem imageItem)
         {
             str = "";
             byte[] bytes = System.Convert.FromBase64String(imageItem.StrImage);
-            
-            
-            MessageBox.Show(str);
             if (imageItem.Mode1 == ImageItem.Mode.mono)
             {
                 if (invertColor == true)
@@ -28,16 +27,18 @@ namespace customwebbridge.Decode
                         bytes[i] = (byte)(bytes[i] ^ Convert.ToByte(0xff));
                     }
                 }
-                imageItem.Path=drawbitmap.MonoChromeBitMap(bytes, imageItem.Width, imageItem.Height);
+                drawbitmap.MonoChromeBitMap(bytes, imageItem);
             }
             else if (imageItem.Mode1 == ImageItem.Mode.gray16)
             {
-                imageItem.Path= drawbitmap.GreyScale4Bit(bytes, imageItem.Width, imageItem.Height);
+                drawbitmap.GreyScale4Bit(bytes, imageItem);
             }
             else
-                imageItem.Path = drawbitmap.GreyScale8Bit(bytes, imageItem.Width, imageItem.Height);
+                drawbitmap.GreyScale8Bit(bytes, imageItem);
 
 
         }
     }
 }
+    
+

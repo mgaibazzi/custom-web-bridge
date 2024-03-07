@@ -37,6 +37,11 @@ namespace customwebbridge.Libinterface
                 PrintableFeed fe=new PrintableFeed((FeedItem)Item);
                 dev.Feed((uint)fe.Feed.Line);
             }
+            else if(Item.Itemtype==BaseItem.ItemType.image)
+            {
+                PrintableImage im=new PrintableImage((ImageItem)Item);
+                dev.PrintBitmapImage(im.Bp,im.Settings1);
+            }
             else 
             {
                 PrintableDrawer dr = new PrintableDrawer((DrawerItem)Item);

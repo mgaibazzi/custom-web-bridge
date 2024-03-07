@@ -94,6 +94,7 @@
     <Compile Include="Libinterface\PrintableCut.cs" />
     <Compile Include="Libinterface\PrintableFeed.cs" />
     <Compile Include="Libinterface\PrintableDrawer.cs" />
+    <Compile Include="Libinterface\PrintableImage.cs" />
     <Compile Include="Libinterface\PrintableText.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
