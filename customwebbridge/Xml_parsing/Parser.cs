@@ -10,20 +10,11 @@ using System.Xml;
 namespace customwebbridge.Xml_parsing
 {
     internal class Parser
-    {
+    {   //this variable is used to contain the Path of the file
         string selectedFilePath;
-        /*public enum TextAlign
-        {
-            left,
-            center,
-            right
-        }
-        public int linespace = 30;
-        public bool rotate = false;
-        TextAlign textAlign = TextAlign.left;*/
+        //Parser default constructor 
         public Parser(string selectedFilePath)
         { this.selectedFilePath = selectedFilePath; }
-
 
         TextParsing textParsing = new TextParsing();
         FeedParsing feedParsing = new FeedParsing();
@@ -34,10 +25,9 @@ namespace customwebbridge.Xml_parsing
         {
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(selectedFilePath);
-            
+            //this function is used to check the Node name and riderect the item to the right Parsing function 
             foreach (XmlNode node in xmlDoc.DocumentElement.ChildNodes)
             {
-                
                 //MessageBox.Show(node.Name);
                 if (node.Name == "text")
                 {

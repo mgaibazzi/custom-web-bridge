@@ -31,24 +31,15 @@ namespace customwebbridge
             color_3,
             color_4,
         }
-        /*public enum Halftone
-        {
-            dither,
-            error_diffusion,
-            threshold
-        }*/
-         
+
         int width;//1-256
         int height;//1-256
         string strImage = "";   //codified image
-
-        //double brightness;//0.1-10
         Scale scale;
         Mode mode;
         Color color;
-        //Halftone halftone;
 
-
+        //default constructor 
         public ImageItem() : base(BaseItem.ItemType.image)
         {
             Width = 30;
@@ -59,7 +50,7 @@ namespace customwebbridge
             Color1 = Color.color_1;
         }
 
-
+        //parameterized constructor 
         public ImageItem(int width, int height, string strImage,  Mode md, Color col,Scale scale) : base(BaseItem.ItemType.image)
         {
             this.Width = width;
@@ -70,6 +61,8 @@ namespace customwebbridge
             this.Scale1 = scale;
         }
 
+
+        //getter and setter
         public int Width
         {
             get { return width; }
@@ -89,15 +82,14 @@ namespace customwebbridge
 
             }
         }
-
-
-
         public Mode Mode1 { get => mode; set => mode = value; }
         public Color Color1 { get => color; set => color = value; }
         public string StrImage { get => strImage; set => strImage = value; }
         public Bitmap BitMap { get => bitMap; set => bitMap = value; }
         public Scale Scale1 { get => scale; set => scale = value; }
 
+
+        //ImageItem class ToString
         public override string ToString()
         {
             string str = "width: " + Width + "\n"

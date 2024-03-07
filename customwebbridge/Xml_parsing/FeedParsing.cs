@@ -12,15 +12,17 @@ namespace customwebbridge.Xml_parsing
     {
         string path;
         
-
+        //defeault constructor 
         public FeedParsing()
         {
         }
+        //getter and setter
         public string Path
         {
             get { return path; }
             set { if (value != null) path = value; else throw new Exception("String null"); }
         }
+        //this funtion is used to parse the Item Feed
         public void ParseNodeXml(List<BaseItem> items,XmlNode feedNode, BaseItem baseFormat)
         {
             int line;
@@ -31,6 +33,7 @@ namespace customwebbridge.Xml_parsing
 
                 unit = 0;
                 line = 0;
+                //check if the attributes are null
                 if (feedNode.Attributes["line"]?.Value != null)
                 { 
                     line = Convert.ToInt32(feedNode.Attributes["line"].Value);
@@ -43,17 +46,12 @@ namespace customwebbridge.Xml_parsing
                         unit = Convert.ToInt32(feedNode.Attributes["unit"].Value);
                         feedItem.Unit = unit;
                     }
-                    else
+                    else if(feedNode.Attributes[""]?.Value == null)
                     {
-                        if (feedNode.Attributes[""]?.Value == null)
-                        {
-                            line++;
-                            feedItem.Line = line;
-                        }
+                        line++;
+                        feedItem.Line = line; 
                     }
                 }
-
-                
                 feedItem.setCommonVariabiles(baseFormat);
                 items.Add(feedItem);
             }

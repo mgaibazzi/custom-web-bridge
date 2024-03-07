@@ -13,13 +13,22 @@ namespace customwebbridge
 
     {
 
-        //commmon
+        //commmon variables
         int width;
         int height;
         string data = "";
 
 
 
+        //default constructor
+        public Barcode(ItemType pType) : base(pType)
+        {
+            pType = ItemType.none;
+            Width = 276;
+            Height = 276;
+            Data = "765";
+        }
+        //parameterized constructor
         public Barcode(ItemType pType, int width, int height, string data) : base(pType)
         {
 
@@ -32,15 +41,8 @@ namespace customwebbridge
             this.data = data;
 
         }
-        public Barcode(ItemType pType) : base(pType)
-        {
-            pType = ItemType.none;
-            Width = 276;
-            Height = 276;
-            Data = "765";
-        }
 
-        //Barcode constructor
+        //getter and setter
         public int Width { get => width; set => width = value; }
         public string Data { get => data; set => data = value; }
         public int Height { get => height; set => height = value; }
@@ -49,6 +51,7 @@ namespace customwebbridge
 }
 public class Barcode2D : Barcode
 {   
+    //Barcode2d ECL enum
     public enum ErrorCorrectionLevel
     {
         level_0,
@@ -64,13 +67,9 @@ public class Barcode2D : Barcode
         level_m,
         level_q,
         level_h,
-        Default                     //default (with d )
+        Default                  
     }
-    int errorCorrectionLevelAztecCode;
-    int s_size;
-    private ErrorCorrectionLevel errorCorrectionLevel;
-    private Type typeQRCode;
-
+    //Barcode2d Type enum
     public enum Type
     {
         pdf417_standard,
@@ -94,7 +93,14 @@ public class Barcode2D : Barcode
         datamatrix_rectangle_16,
     }
 
+    int errorCorrectionLevelAztecCode;
+    int s_size;
+    private ErrorCorrectionLevel errorCorrectionLevel;
+    private Type typeQRCode;
 
+
+
+    //Barcode2d Default constructor
     public Barcode2D(int width, int height, string data) : base(ItemType.qrcode, width, height, data)//default constructor
 
     {
@@ -107,8 +113,7 @@ public class Barcode2D : Barcode
         S_size = 1220;
 
     }
-
-
+    //Barcode2d parameterized constructor
     public Barcode2D(int width, int height, string data, ErrorCorrectionLevel ecl, int errorCorrectionLevelAztecCode, int s_size, Type type) : base(ItemType.qrcode, width, height, data)//main constructor
 
     {
@@ -139,7 +144,6 @@ public class Barcode2D : Barcode
 
         }
     }
-
     public int S_size
     {
         get { return s_size; }
@@ -153,10 +157,10 @@ public class Barcode2D : Barcode
 
         }
     }
-
     public ErrorCorrectionLevel ErrorCorrectionLevel1 { get => errorCorrectionLevel; set => errorCorrectionLevel = value; }
     public Type TypeQRCode { get => typeQRCode; set => typeQRCode = value; }
 
+    //Barcode2d class ToString
     public override string ToString()
     {
         string str = "Data: " + Data + "\n"
@@ -173,7 +177,7 @@ public class Barcode2D : Barcode
 
 public class Barcode1D : Barcode
 {
-
+    //Barcode1d Type enum
     public enum Type
     {
         code39,
@@ -193,6 +197,7 @@ public class Barcode1D : Barcode
         gs1_databar_limited,
         gs1_databar_expanded
     }
+    //barcode1d Human Readable Interface enum
     public enum HRI
     {
         none,
@@ -200,6 +205,7 @@ public class Barcode1D : Barcode
         below,
         both
     }
+//Barcode1d  FOntStyle enum
     public enum FontStyle
     {
         font_a,
@@ -216,7 +222,7 @@ public class Barcode1D : Barcode
     HRI Hri;
     Type barcodeType;
 
-
+//barcode1d default constructor
     public Barcode1D(int width, int height, string data) : base(ItemType.barcode, width, height, data)//default constructor
     {
         barcodeType = Type.code39;
@@ -226,9 +232,7 @@ public class Barcode1D : Barcode
         Hri1 = HRI.none;
         Font1 = FontStyle.font_a;
     }
-
-
-
+    //Barcode1d parameterized constructor
     public Barcode1D(int width, int height, string data, HRI hri, FontStyle font, Type type) : base(ItemType.barcode, width, height, data)//main constructor
     {
         barcodeType = type;
@@ -245,6 +249,8 @@ public class Barcode1D : Barcode
 
     public Type BarcodeType { get => barcodeType; set => barcodeType = value; }
 
+
+    //Barcode1d class ToString
     public override string ToString()
     {
         string str =    "Data: " + Data + "\n"

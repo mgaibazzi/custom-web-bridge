@@ -8,6 +8,7 @@ namespace customwebbridge.Items
 {
     public class BuzzerItem : BaseItem
     {
+        //buzzer pattern enum
         public enum Pattern
         {
             pattern_a,
@@ -33,6 +34,21 @@ namespace customwebbridge.Items
         int repeat; // buzzer  1-255
         Pattern pattern;
 
+        //default constructor 
+        public BuzzerItem() : base(ItemType.sound)
+        {
+            this.Pattern1 = Pattern.pattern_a;
+            this.Repeat = 1;
+        }
+        //parameterized constructor 
+        public BuzzerItem(int repeat, Pattern pattern) : base(ItemType.sound)
+        {
+            this.pattern = pattern;
+            Repeat = repeat;
+        }
+
+
+        //GEtter and setter
         public int Repeat
         {
             get { return repeat; }
@@ -47,17 +63,5 @@ namespace customwebbridge.Items
             }
         }
         internal Pattern Pattern1 { get => pattern; set => pattern = value; }
-        public BuzzerItem() : base(ItemType.sound)
-        {
-            this.Pattern1 = Pattern.pattern_a;
-            this.Repeat = 1;
-        }
-
-
-        public BuzzerItem(int repeat, Pattern pattern) : base(ItemType.sound)
-        {
-            this.pattern = pattern;
-            Repeat = repeat;
-        }   
     }
 }

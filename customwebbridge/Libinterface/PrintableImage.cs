@@ -13,7 +13,6 @@ namespace customwebbridge.Libinterface
         Bitmap bp = null;   
         PrintImageSettings Settings = new PrintImageSettings();
         //getter and setter
-
         public PrintImageSettings Settings1 { get => Settings; set => Settings = value; }
         public Bitmap Bp { get => bp; set => bp = value; }
 
@@ -25,7 +24,8 @@ namespace customwebbridge.Libinterface
             ConvertImgScaleMode(item);
             ConvertImageAlign(item);
         }
-        public void ConvertImgScaleMode(ImageItem item)
+        //this function check if the image scale to fit boc is enabled
+        private void ConvertImgScaleMode(ImageItem item)
         {
             if (item.Scale1 == ImageItem.Scale.fit)
             {
@@ -38,7 +38,7 @@ namespace customwebbridge.Libinterface
             }
         }
         //convert the align type form the basItem class to the windows api align type
-        public void ConvertImageAlign(ImageItem item)
+        private void ConvertImageAlign(ImageItem item)
         {
             if (item.TextAlign1 == BaseItem.TextAlign.right)
             {

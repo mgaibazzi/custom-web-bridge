@@ -14,6 +14,7 @@ namespace customwebbridge.Xml_parsing
     public class ImageParsing
     {
         DecodeBase64 decodeBase64 = new DecodeBase64();
+        //this funtion is used to parse the Item Image
         public void ParseNodeXml(XmlNode imageNode, List<BaseItem> items)
         {
             Mode mode = new Mode();
@@ -33,24 +34,24 @@ namespace customwebbridge.Xml_parsing
                     width = Convert.ToInt32(imageNode.Attributes["width"].Value);
                     imageItem.Width = width;
                 }
-                if (imageNode.Attributes["height"]?.Value != null)
+                else if (imageNode.Attributes["height"]?.Value != null)
                 {
                     height = Convert.ToInt32(imageNode.Attributes["height"].Value);
                     imageItem.Height = height;
                 }
-                if (imageNode.Attributes["color"]?.Value != null)
+                else if (imageNode.Attributes["color"]?.Value != null)
                 {
                     cl = Convert.ToString(imageNode.Attributes["color"]?.Value);
                     color = (Color)Enum.Parse(typeof(Color), cl);//Casting from string to enum
                     imageItem.Color1 = color;
                 }
-                if (imageNode.Attributes["scale"]?.Value != null)
+                else if (imageNode.Attributes["scale"]?.Value != null)
                 {
                     sc = Convert.ToString(imageNode.Attributes["scale"]?.Value);
                     scale = (Scale)Enum.Parse(typeof(Scale), sc);//Casting from string to enum
                     imageItem.Scale1 = scale;
                 }
-                if (imageNode.Attributes["mode"]?.Value != null)
+                else if (imageNode.Attributes["mode"]?.Value != null)
                 {
                     md = Convert.ToString(imageNode.Attributes["mode"]?.Value);
                     mode = (Mode)Enum.Parse(typeof(Mode), md);//Casting from string to enum

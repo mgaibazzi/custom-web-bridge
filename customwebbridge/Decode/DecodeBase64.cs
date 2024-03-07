@@ -14,6 +14,7 @@ namespace customwebbridge.Decode
         string str;
         bool invertColor = true;
         DrawBitMap drawbitmap = new DrawBitMap();
+        //Convert a string in bytes and then draw the bitmap
         public void Decode(ImageItem imageItem)
         {
             str = "";

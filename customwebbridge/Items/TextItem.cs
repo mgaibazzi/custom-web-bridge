@@ -13,14 +13,6 @@ namespace customwebbridge
 {
     internal class TextItem:BaseItem
     {
-        // Enum to represent text alignment options
-        /*public enum TextAlign
-        {
-            left,
-            center,
-            right
-        }*/
-
         // Enum to represent supported languages
         public enum Language
         {
@@ -113,15 +105,14 @@ namespace customwebbridge
             this.Linespace = linespace;
             this.Rotate = rotate;
         }
-        //Main constructor
-
-        //public Barcode2D( int width, int height, string data) : base( width, height, data)
+        //Constructor 
         public TextItem(string text, FontStyle font, ColorStyle color ) : base(BaseItem.ItemType.text)
         {
             this.Text = text;
             this.Font = font;
             this.Color = color;
         }
+        //Copy constructor 
         public TextItem( TextItem ti):base(BaseItem.ItemType.text)
         {
             this.Text = ti.Text;
@@ -144,7 +135,6 @@ namespace customwebbridge
 
         }
         // Properties with getter and setter methods for each field
-        //public string Text { get => text; set => text = value; }
         public string Text
         {
             get { return text; }
@@ -154,7 +144,6 @@ namespace customwebbridge
                 else throw new Exception("String null");
             }
         }
-        //public TextAlign Align { get => align; set => align = value; }
         public int X
         {
             get { return x; }
@@ -207,19 +196,6 @@ namespace customwebbridge
 
             }
         }
-        /*public int Linespace
-        {
-            get { return Linespace; }
-            set
-            {
-                if (value < 0 && value > 2399)
-                {
-                    throw new Exception("Uncorrect value");
-                }
-                else Linespace = value;
-
-            }
-        }*/
         public Language Lang { get => lang; set => lang = value; }
         public FontStyle Font { get => font; set => font = value; }
         public bool Smooth { get => smooth; set => smooth = value; }
@@ -229,37 +205,7 @@ namespace customwebbridge
         public bool UnderLine { get => underLine; set => underLine = value; }
         public bool Emphasized { get => emphasized; set => emphasized = value; }
         public ColorStyle Color { get => color; set => color = value; }
-        //public bool Rotate { get => Rotate; set => Rotate = value; }
-
-
-        /*private string text = "";
-        private TextAlign align = TextAlign.left;
-        private int x;
-        private int y;
-        private int width;
-        private int height;
-        private Language lang = Language.en;
-        private FontStyle font = FontStyle.font_a;
-        private bool smooth;
-        private bool doubleHeight;
-        private bool doubleWidth;
-        private bool reverse;
-        private bool underLine;
-        private bool emphasized;
-        private ColorStyle color = ColorStyle.color_1;
-        private int linespace;
-        private bool rotate;*/
-
-        /*public override string ToString() // stampa tutti i dati
-        {
-            string str;
-            str = "Nome:  " + Nome + " "
-                + "Cognome: " + Cognome + " "
-                + "Vittorie:" + Vittorie + " "
-                + "Eta:" + Eta+Environment.NewLine;
-            return str;
-        }*/
-
+        //ToString of the TextItem class
         public override string ToString()
         {
             string str;

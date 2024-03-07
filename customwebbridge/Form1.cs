@@ -36,6 +36,7 @@ namespace customwebbridge
         {
             PrintXmlList(items);
         }
+        //this function is used to generate the error message
         private void ShowErrorMessage(Exception ex)
         {
             String strErrorDescription = "";
@@ -71,7 +72,7 @@ namespace customwebbridge
                 return;
             }
         }
-
+        //this function is used to find the Xml file you want to print
         private void bt_open_file_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -103,6 +104,7 @@ namespace customwebbridge
             }
             bt_pair_USB.Visible = true;
         }
+        //this funtion is used to use the device selected in the combo box and print the XML
         private void PrintXmlList(List<BaseItem> items)
         {
 
@@ -145,7 +147,7 @@ namespace customwebbridge
         {
             bt_print.Visible = true;
         }
-
+        //this function is used to check if the printer are connected to the pc
         private void bt_pair_USB_Click(object sender, EventArgs e)
         {
             cb_select_USB.SelectedIndex = -1;

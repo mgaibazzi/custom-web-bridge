@@ -10,14 +10,15 @@ namespace customwebbridge.Libinterface
 {
     internal class PrintableText
     {
-        TextItem testo;
+        TextItem text;//TextItem object
         bool bAddLF;
         PrintFontSettings FontSettings;
-        //constructor
-        public PrintableText(TextItem testo)
+        //default constructor
+        public PrintableText(TextItem text)
         {
-            this.testo = testo;
-            if (testo.Linespace != 0)
+            this.text = text;
+            //check if you have to send a line feed command after the text
+            if (text.Linespace != 0)
             {
                 BAddLF = true;
             }
@@ -25,37 +26,39 @@ namespace customwebbridge.Libinterface
             {
                 BAddLF = false;
             }
+
             FontSettings1 = new PrintFontSettings();
-            FontSettings1.Underline = this.testo.UnderLine;
-            FontSettings1.Emphasized = this.testo.Emphasized;
-            Font_size_table_Height(this.testo.Height);
-            Font_size_table_width(this.testo.Width);
+            FontSettings1.Underline = this.text.UnderLine;
+            FontSettings1.Emphasized = this.text.Emphasized;
+            Font_size_table_Height(this.text.Height);
+            Font_size_table_width(this.text.Width);
             Font_Type_table();
-            FontJustification(this.testo);
-            XPosition(this.testo);
-            if (testo.DoubleHeight == true) 
+            FontJustification(this.text);
+            XPosition(this.text);
+            //this if is used to see if double widht or double height are enabled  
+            if (text.DoubleHeight == true) 
             {
-                if(this.testo.Height>4)
+                if(this.text.Height>4)
                     Font_size_table_Height(8);
                 else
-                    Font_size_table_Height(this.testo.Height * 2);
+                    Font_size_table_Height(this.text.Height * 2);
             }
 
-            if (testo.DoubleWidth == true)
+            if (text.DoubleWidth == true)
             {
-                if(this.testo.Width>4)
+                if(this.text.Width>4)
                     Font_size_table_width(8);
                 else
-                    Font_size_table_width(this.testo.Width * 2);
+                    Font_size_table_width(this.text.Width * 2);
             }
         }
         //getter and setter 
-        internal TextItem Testo { get => testo; set => testo = value; }
+        internal TextItem Testo { get => text; set => text = value; }
         public bool BAddLF { get => bAddLF; set => bAddLF = value; }
         public PrintFontSettings FontSettings1 { get => FontSettings; set => FontSettings = value; }
 
         //Convert TextItem font widht to windows api font widht
-        private void  Font_size_table_width(int num)/////da mettere a posto i valori
+        private void  Font_size_table_width(int num)
         {
             switch(num)
             {
@@ -123,21 +126,21 @@ namespace customwebbridge.Libinterface
             }
         }
         //Convert TextItem font type to windows api font type
-        private void Font_Type_table()/////da mettere a posto i valori
+        private void Font_Type_table()
         {
-            if (testo.Font==TextItem.FontStyle.font_a)
+            if (text.Font==TextItem.FontStyle.font_a)
             {
                 FontSettings1.CharFontType = PrintFontSettings.FontType.FONT_TYPE_1;
             }
-            else if(testo.Font == TextItem.FontStyle.font_b)
+            else if(text.Font == TextItem.FontStyle.font_b)
             {
                 FontSettings1.CharFontType = PrintFontSettings.FontType.FONT_TYPE_2;
             }
-            else if (testo.Font == TextItem.FontStyle.font_c)
+            else if (text.Font == TextItem.FontStyle.font_c)
             {
                 FontSettings1.CharFontType = PrintFontSettings.FontType.FONT_TYPE_3;
             }
-            else if (testo.Font == TextItem.FontStyle.font_d)
+            else if (text.Font == TextItem.FontStyle.font_d)
             {
                 FontSettings1.CharFontType = PrintFontSettings.FontType.FONT_TYPE_4;
             }
@@ -146,22 +149,24 @@ namespace customwebbridge.Libinterface
                 FontSettings1.CharFontType = PrintFontSettings.FontType.FONT_TYPE_1;
             }
         }
-        private void FontJustification(TextItem testo)
+        //Convert TextItem align to windows api font Justification
+        private void FontJustification(TextItem text)
         {
-            if(testo.TextAlign1==TextItem.TextAlign.left)    
+            if(text.TextAlign1==TextItem.TextAlign.left)    
             { 
                 FontSettings1.Justification= PrintFontSettings.FontJustification.FONT_JUSTIFICATION_LEFT;
             }
-            else if (testo.TextAlign1 == TextItem.TextAlign.center)
+            else if (text.TextAlign1 == TextItem.TextAlign.center)
             {
                 FontSettings1.Justification = PrintFontSettings.FontJustification.FONT_JUSTIFICATION_CENTER;
             }
             else FontSettings1.Justification = PrintFontSettings.FontJustification.FONT_JUSTIFICATION_RIGHT;
 
         }
-        private void XPosition(TextItem testo)
+        //his funtion is used to move the text x value
+        private void XPosition(TextItem text)
         {
-            FontSettings.LeftMarginValue = (short)testo.X;
+            FontSettings.LeftMarginValue = (short)text.X;
         }
     }
 }

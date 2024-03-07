@@ -10,6 +10,7 @@ namespace customwebbridge.Libinterface
     internal class Printable
     {
         public Printable() { }
+        //this function is used to check the BaseItem type and print it using the correct Windows API function 
         public void PrintItem(BaseItem Item, CuCustomWndDevice dev)
         {
             if (Item.Itemtype == BaseItem.ItemType.barcode)

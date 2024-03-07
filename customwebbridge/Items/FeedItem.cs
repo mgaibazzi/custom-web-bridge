@@ -11,18 +11,23 @@ namespace customwebbridge
         int line;//0-255
         int unit;//0-255
 
+
+        //default constructor 
         public FeedItem() : base(BaseItem.ItemType.feed)
         {
             line = 0;
             unit = 0;
         }
-
+        //parameterized constructor 
         public FeedItem(int line, int unit) : base(BaseItem.ItemType.feed)
         {
             this.Line = line;
             this.Unit = unit;
         }
 
+
+
+        //getter and setter
         public int Line
         {
             get { return line; }
@@ -36,8 +41,6 @@ namespace customwebbridge
 
             }
         }
-
-
         public int Unit
         {
             get { return unit; }
@@ -51,6 +54,7 @@ namespace customwebbridge
 
             }
         }
+        //FeedItem class ToString 
         public override string ToString()
         {
             string str = "Unit: " + Unit + "\n"

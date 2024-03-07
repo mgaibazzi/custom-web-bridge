@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,6 +13,7 @@ namespace customwebbridge.Xml_parsing
 {
     internal class BarcodeParsing
     {
+        //This function is used to parse the Item barcod1d 
         public void Barcode1DParsing(XmlNode textNode, List<BaseItem> items, BaseItem baseFormat) 
         {
             Barcode1D.Type type = Barcode1D.Type.code39;
@@ -25,6 +27,8 @@ namespace customwebbridge.Xml_parsing
             string ty;//support variables that we use to cast an enum
             string h;//support variables that we use to cast an enum
             string fnt;//support variables that we use to cast an enum
+
+            // Extract text content and check if the attributes are null
             try
             {
                 data = textNode.InnerText;
@@ -35,25 +39,24 @@ namespace customwebbridge.Xml_parsing
                     width = Convert.ToInt32(textNode.Attributes["width"]?.Value);
                     item.Width = width;
                 }
-                if (textNode.Attributes["height"]?.Value != null)
+                else if (textNode.Attributes["height"]?.Value != null)
                 {
                     height = Convert.ToInt32(textNode.Attributes["height"]?.Value);
                     item.Height = height;
                 }
-                
-                if (textNode.Attributes["hri"]?.Value != null)
+                else if (textNode.Attributes["hri"]?.Value != null)
                 {
                     h = textNode.Attributes["hri"]?.Value;
                     hri = (Barcode1D.HRI)Enum.Parse(typeof(Barcode1D.HRI), h);//Casting from string to enum
                     item.Hri1 = hri;
                 }
-                if (textNode.Attributes["font"]?.Value != null)
+                else if (textNode.Attributes["font"]?.Value != null)
                 {
                     fnt = textNode.Attributes["font"]?.Value;
                     font = (Barcode1D.FontStyle)Enum.Parse(typeof(Barcode1D.FontStyle),fnt);//Casting from string to enum
                     item.Font1 = font;
                 }
-                if (textNode.Attributes["type"]?.Value != null)
+                else if (textNode.Attributes["type"]?.Value != null)
                 {
                     ty = textNode.Attributes["type"]?.Value;
                     type = (Barcode1D.Type)Enum.Parse(typeof(Barcode1D.Type), ty);//Casting from string to enum
@@ -68,6 +71,9 @@ namespace customwebbridge.Xml_parsing
                 MessageBox.Show("Error parsing XML: " + ex.Message, "XML Parsing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+        //This function is used to parse the Item barcod2d 
         public void Barcode2DParsing(XmlNode textNode, List<BaseItem> items, BaseItem baseFormat) 
         {
             Barcode2D.ErrorCorrectionLevel errorcorrectionlevel = Barcode2D.ErrorCorrectionLevel.Default;
@@ -83,8 +89,8 @@ namespace customwebbridge.Xml_parsing
 
             try
             {
-                
-                // Extract text content and display
+
+                // Extract text content and check if the attributes are null
                 data = textNode.InnerText;
                 item.Data = data;
                 if (textNode.Attributes["width"]?.Value != null)
@@ -92,25 +98,26 @@ namespace customwebbridge.Xml_parsing
                     width = Convert.ToInt32(textNode.Attributes["width"]?.Value);
                     item.Width = width;
                 }
-                if (textNode.Attributes["height"]?.Value != null)
+                else if (textNode.Attributes["height"]?.Value != null)
                 {
                     height = Convert.ToInt32(textNode.Attributes["height"]?.Value);
                     item.Height = height;
                 }
-                if (textNode.Attributes["size"]?.Value != null)
+                else if (textNode.Attributes["size"]?.Value != null)
                 {
                     s_size = Convert.ToInt32(textNode.Attributes["size"]?.Value);
                     item.S_size = s_size;
                 }
-                if (textNode.Attributes["type"]?.Value != null)
+                else if (textNode.Attributes["type"]?.Value != null)
                 {
                     ty = textNode.Attributes["type"]?.Value;
                     type = (Barcode2D.Type)Enum.Parse(typeof(Barcode2D.Type), ty);//Casting from string to enum
                     item.TypeQRCode = type;
                 }
-                if (textNode.Attributes["level"]?.Value != null)
+                else if (textNode.Attributes["level"]?.Value != null)
                 {
                     ecl = textNode.Attributes["level"]?.Value;
+                    //check if the error connection level is set to the default value
                     if(ecl=="default")
                     {
                         item.ErrorCorrectionLevel1 = Barcode2D.ErrorCorrectionLevel.Default;

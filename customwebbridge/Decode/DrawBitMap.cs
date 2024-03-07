@@ -11,6 +11,7 @@ namespace customwebbridge.Decode
     public class DrawBitMap
     {
         Bitmap bitmap;
+        //Create and Save a bitmap in different modes 
         public void MonoChromeBitMap(byte[] bytes,ImageItem item,PixelFormat px = PixelFormat.Format1bppIndexed)
         {
             
@@ -30,12 +31,11 @@ namespace customwebbridge.Decode
             bitmap.Save("outputGreyScale8bit.bmp", ImageFormat.Bmp);
             item.BitMap = bitmap;
         }
-        public  Bitmap CreateBitmap(int width, int height, byte[] data,PixelFormat px)
+        // create a bitmap with the specified dimension
+        public Bitmap CreateBitmap(int width, int height, byte[] data,PixelFormat px)
         {
-            // Crea una Bitmap con le dimensioni specificate
+           
             Bitmap bitmap = new Bitmap(width, height, px);
-            //Bitmap bitmap = new Bitmap(width, height, PixelFormat.Format4bppIndexed);
-            // Copia i dati nell'immagine
             BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.WriteOnly, bitmap.PixelFormat);
             System.Runtime.InteropServices.Marshal.Copy(data, 0, bitmapData.Scan0, data.Length);
             bitmap.UnlockBits(bitmapData);
