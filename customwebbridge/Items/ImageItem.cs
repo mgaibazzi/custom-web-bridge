@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,10 +11,18 @@ namespace customwebbridge
 {
     public class ImageItem : BaseItem
     {
+        Bitmap bitMap;
+        public enum Scale
+        {
+            none,
+            width,
+            fit
+        }
         public enum Mode
         {
             mono,
-            gray
+            gray16,
+            gray256
         }
         public enum Color
         {
@@ -20,47 +31,43 @@ namespace customwebbridge
             color_3,
             color_4,
         }
-        public enum Halftone
+        /*public enum Halftone
         {
             dither,
             error_diffusion,
             threshold
-        }
-
+        }*/
+         
         int width;//1-256
         int height;//1-256
-        string image = "";   //codified image
-        bool scale;
-        double brightness;//0.1-10
+        string strImage = "";   //codified image
 
+        //double brightness;//0.1-10
+        Scale scale;
         Mode mode;
         Color color;
-        Halftone halftone;
+        //Halftone halftone;
 
 
         public ImageItem() : base(BaseItem.ItemType.image)
         {
             Width = 30;
             Height = 30;
-            Path = "";
-            Scale = false;
-            mode = Mode.mono;
-            Brightness = 1.0;
-            color = Color.color_1;
-            halftone = Halftone.dither;
+            StrImage = "";
+            Scale1 = Scale.none;
+            Mode1 = Mode.mono;
+            Color1 = Color.color_1;
         }
 
 
-        public ImageItem(int width, int height, string path, bool scale, Mode md, double brightness, Color col, Halftone half) : base(BaseItem.ItemType.image)
+        public ImageItem(int width, int height, string strImage,  Mode md, Color col,Scale scale) : base(BaseItem.ItemType.image)
         {
-            this.width = width;
-            this.height = height;
-            this.image = path;
-            this.scale = scale;
-            this.brightness = brightness;
+            this.Width = width;
+            this.Height = height;
+            this.StrImage = strImage;
             this.color = col;
-            this.halftone = half;
             this.mode = md;
+            this.Scale1 = scale;
         }
 
         public int Width
@@ -68,11 +75,7 @@ namespace customwebbridge
             get { return width; }
             set
             {
-                if (value < 1 && value > 256)
-                {
-                    throw new Exception("Uncorrect value");
-                }
-                else width = value;
+                 width = value;
 
             }
         }
@@ -81,32 +84,31 @@ namespace customwebbridge
             get { return height; }
             set
             {
-                if (value < 1 && value > 256)
-                {
-                    throw new Exception("Uncorrect value");
-                }
-                else height = value;
+
+                height = value;
 
             }
         }
 
-        public double Brightness
+
+
+        public Mode Mode1 { get => mode; set => mode = value; }
+        public Color Color1 { get => color; set => color = value; }
+        public string StrImage { get => strImage; set => strImage = value; }
+        public Bitmap BitMap { get => bitMap; set => bitMap = value; }
+        public Scale Scale1 { get => scale; set => scale = value; }
+
+        public override string ToString()
         {
-            get { return brightness; }
-            set
-            {
-                if (value < 0.1 && value > 10)
-                {
-                    throw new Exception("Uncorrect value");
-                }
-                else brightness = value;
-
-            }
+            string str = "width: " + Width + "\n"
+                    + "height: " + Height + "\n"
+                    + base.ToString() 
+                    +"color: " + Color1 + "\n"
+                    +"Mode: " + Mode1 + "\n"
+                    +"str: " + StrImage
+                    +"\n\n\n\n";
+            return str;
         }
-        public string Path { get => image; set => image = value; }
-        public bool Scale { get => scale; set => scale = value; }
-        internal Mode Mode1 { get => mode; set => mode = value; }
-        internal Color Color1 { get => color; set => color = value; }
-        internal Halftone Halftone1 { get => halftone; set => halftone = value; }
+
     }
 }
