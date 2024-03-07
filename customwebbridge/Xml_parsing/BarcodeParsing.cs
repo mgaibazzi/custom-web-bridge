@@ -28,6 +28,8 @@ namespace customwebbridge.Xml_parsing
             try
             {
                 data = textNode.InnerText;
+                if(textNode.InnerText!=null)
+                    item.Data = data; 
                 if (textNode.Attributes["width"]?.Value != null)
                 {
                     width = Convert.ToInt32(textNode.Attributes["width"]?.Value);

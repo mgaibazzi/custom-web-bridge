@@ -79,8 +79,8 @@ namespace customwebbridge
             Text = "";
             X = 0;
             Y = 0;
-            Width = 3;
-            Height = 3;
+            Width = 1;
+            Height = 1;
             Lang = Language.en;
             Font = FontStyle.font_a;
             Smooth = false;

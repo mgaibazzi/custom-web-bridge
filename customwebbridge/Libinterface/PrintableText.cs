@@ -32,7 +32,8 @@ namespace customwebbridge.Libinterface
             Font_size_table_width(this.testo.Width);
             Font_Type_table();
             FontJustification(this.testo);
-            if(testo.DoubleHeight == true) 
+            XPosition(this.testo);
+            if (testo.DoubleHeight == true) 
             {
                 if(this.testo.Height>4)
                     Font_size_table_Height(8);
@@ -157,6 +158,10 @@ namespace customwebbridge.Libinterface
             }
             else FontSettings1.Justification = PrintFontSettings.FontJustification.FONT_JUSTIFICATION_RIGHT;
 
+        }
+        private void XPosition(TextItem testo)
+        {
+            FontSettings.LeftMarginValue = (short)testo.X;
         }
     }
 }

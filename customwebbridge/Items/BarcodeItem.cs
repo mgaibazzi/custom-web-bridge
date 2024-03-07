@@ -17,6 +17,9 @@ namespace customwebbridge
         int width;
         int height;
         string data = "";
+
+
+
         public Barcode(ItemType pType, int width, int height, string data) : base(pType)
         {
 
