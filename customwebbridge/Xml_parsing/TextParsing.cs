@@ -57,8 +57,7 @@ namespace customwebbridge
                 {
                     TextItem item_copy = new TextItem(ItemFormat);
                     item_copy.Text = textContent;
-                    //string str = item_copy.ToString();
-                    //MessageBox.Show(str);
+                    itemFormat.X = 0;
                     items.Add(item_copy);
                 }
                 //thid if check what type of attributes the xml give you and give the value to the correct variable
@@ -88,15 +87,24 @@ namespace customwebbridge
                     fontStyle = (FontStyle)Enum.Parse(typeof(FontStyle), font);//Casting from string to enum
                     ItemFormat.Font = fontStyle;
                 }
-                else if (textNode.Attributes["dw"]?.Value != null)
-                {
-                    doubleHeight = Convert.ToBoolean(textNode.Attributes["dw"]?.Value);
-                    ItemFormat.DoubleHeight = doubleHeight;
-                }
                 else if (textNode.Attributes["dh"]?.Value != null)
                 {
-                    doubleWidth = Convert.ToBoolean(textNode.Attributes["dh"]?.Value);
-                    ItemFormat.DoubleWidth = doubleWidth;
+                    doubleHeight = Convert.ToBoolean(textNode.Attributes["dh"]?.Value);
+                    ItemFormat.DoubleHeight = doubleHeight;
+                    if (ItemFormat.DoubleHeight == false)
+                        ItemFormat.Height = 1;
+                    else
+                        ItemFormat.Height = 1;
+                    
+                    if (textNode.Attributes["dw"]?.Value != null)
+                    {
+                        doubleWidth = Convert.ToBoolean(textNode.Attributes["dw"]?.Value);
+                        ItemFormat.DoubleWidth = doubleWidth;
+                        if (ItemFormat.DoubleWidth == false)
+                            ItemFormat.Width = 1;
+                        else
+                            ItemFormat.Width = 1;
+                    }
                 }
                 else if (textNode.Attributes["y"]?.Value != null)
                 {
@@ -152,7 +160,7 @@ namespace customwebbridge
                     reverse = Convert.ToBoolean(textNode.Attributes["reverse"]?.Value);
                     ItemFormat.Reverse = reverse;
                 }
-
+                
             }
 
             catch (Exception ex)
