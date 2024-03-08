@@ -99,23 +99,23 @@ namespace customwebbridge.Xml_parsing
                     width = Convert.ToInt32(textNode.Attributes["width"]?.Value);
                     item.Width = width;
                 }
-                else if (textNode.Attributes["height"]?.Value != null)
+                if (textNode.Attributes["height"]?.Value != null)
                 {
                     height = Convert.ToInt32(textNode.Attributes["height"]?.Value);
                     item.Height = height;
                 }
-                else if (textNode.Attributes["size"]?.Value != null)
+                if (textNode.Attributes["size"]?.Value != null)
                 {
                     s_size = Convert.ToInt32(textNode.Attributes["size"]?.Value);
                     item.S_size = s_size;
                 }
-                else if (textNode.Attributes["type"]?.Value != null)
+                if (textNode.Attributes["type"]?.Value != null)
                 {
                     ty = textNode.Attributes["type"]?.Value;
                     type = (Barcode2D.Type)Enum.Parse(typeof(Barcode2D.Type), ty);//Casting from string to enum
                     item.TypeQRCode = type;
                 }
-                else if (textNode.Attributes["level"]?.Value != null)
+                if (textNode.Attributes["level"]?.Value != null)
                 {
                     ecl = textNode.Attributes["level"]?.Value;
                     //check if the error connection level is set to the default value
