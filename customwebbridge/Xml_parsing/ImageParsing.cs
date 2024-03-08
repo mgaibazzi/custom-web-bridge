@@ -34,24 +34,24 @@ namespace customwebbridge.Xml_parsing
                     width = Convert.ToInt32(imageNode.Attributes["width"].Value);
                     imageItem.Width = width;
                 }
-                else if (imageNode.Attributes["height"]?.Value != null)
+                if (imageNode.Attributes["height"]?.Value != null)
                 {
                     height = Convert.ToInt32(imageNode.Attributes["height"].Value);
                     imageItem.Height = height;
                 }
-                else if (imageNode.Attributes["color"]?.Value != null)
+                if (imageNode.Attributes["color"]?.Value != null)
                 {
                     cl = Convert.ToString(imageNode.Attributes["color"]?.Value);
                     color = (Color)Enum.Parse(typeof(Color), cl);//Casting from string to enum
                     imageItem.Color1 = color;
                 }
-                else if (imageNode.Attributes["scale"]?.Value != null)
+                if (imageNode.Attributes["scale"]?.Value != null)
                 {
                     sc = Convert.ToString(imageNode.Attributes["scale"]?.Value);
                     scale = (Scale)Enum.Parse(typeof(Scale), sc);//Casting from string to enum
                     imageItem.Scale1 = scale;
                 }
-                else if (imageNode.Attributes["mode"]?.Value != null)
+                if (imageNode.Attributes["mode"]?.Value != null)
                 {
                     md = Convert.ToString(imageNode.Attributes["mode"]?.Value);
                     mode = (Mode)Enum.Parse(typeof(Mode), md);//Casting from string to enum

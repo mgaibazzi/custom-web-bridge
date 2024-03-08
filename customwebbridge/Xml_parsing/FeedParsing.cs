@@ -46,7 +46,7 @@ namespace customwebbridge.Xml_parsing
                         unit = Convert.ToInt32(feedNode.Attributes["unit"].Value);
                         feedItem.Unit = unit;
                     }
-                    else if(feedNode.Attributes[""]?.Value == null)
+                    if(feedNode.Attributes[""]?.Value == null)
                     {
                         line++;
                         feedItem.Line = line; 

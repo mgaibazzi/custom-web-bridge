@@ -61,17 +61,17 @@ namespace customwebbridge
                     items.Add(item_copy);
                 }
                 //thid if check what type of attributes the xml give you and give the value to the correct variable
-                else if (textNode.Attributes["width"]?.Value != null)
+                if (textNode.Attributes["width"]?.Value != null)
                 {
                     width = Convert.ToInt32(textNode.Attributes["width"]?.Value);
                     ItemFormat.Width = width;
                 }
-                else if (textNode.Attributes["height"]?.Value != null)
+                 if (textNode.Attributes["height"]?.Value != null)
                 {
                     height = Convert.ToInt32(textNode.Attributes["height"]?.Value);
                     ItemFormat.Height = height;
                 }
-                else if (textNode.Attributes["lang"]?.Value != null)
+                 if (textNode.Attributes["lang"]?.Value != null)
                 {
                     lang = textNode.Attributes["lang"]?.Value;
                     if(lang!="en"&&lang!="ja"&&lang!="ko")
@@ -81,13 +81,13 @@ namespace customwebbridge
                     language = (Language)Enum.Parse(typeof(Language), lang);//Casting from string to enum
                     ItemFormat.Lang = language;
                 }
-                else if (textNode.Attributes["font"]?.Value != null)
+                 if (textNode.Attributes["font"]?.Value != null)
                 {
                     font = Convert.ToString(textNode.Attributes["font"]?.Value);
                     fontStyle = (FontStyle)Enum.Parse(typeof(FontStyle), font);//Casting from string to enum
                     ItemFormat.Font = fontStyle;
                 }
-                else if (textNode.Attributes["dh"]?.Value != null)
+                if (textNode.Attributes["dh"]?.Value != null)
                 {
                     doubleHeight = Convert.ToBoolean(textNode.Attributes["dh"]?.Value);
                     ItemFormat.DoubleHeight = doubleHeight;
@@ -106,50 +106,50 @@ namespace customwebbridge
                             ItemFormat.Width = 1;
                     }
                 }
-                else if (textNode.Attributes["y"]?.Value != null)
+                 if (textNode.Attributes["y"]?.Value != null)
                 {
                     y = Convert.ToInt32(textNode.Attributes["y"]?.Value);
                     ItemFormat.Y = y;
                 }
-                else  if (textNode.Attributes["x"]?.Value != null)
+                 if (textNode.Attributes["x"]?.Value != null)
                 {
                     x = Convert.ToInt32(textNode.Attributes["x"]?.Value);
                     ItemFormat.X = x;
                 }
-                else if (textNode.Attributes["smooth"]?.Value != null)
+                 if (textNode.Attributes["smooth"]?.Value != null)
                 {
                     smooth = Convert.ToBoolean(textNode.Attributes["smooth"]?.Value);
                     ItemFormat.Smooth = smooth;
                 }
-                else if (textNode.Attributes["align"]?.Value != null)
+                if (textNode.Attributes["align"]?.Value != null)
                 {
                     align = textNode.Attributes["align"]?.Value;
                     textAlign = (BaseItem.TextAlign)Enum.Parse(typeof(BaseItem.TextAlign), align);//Casting from string to enum
                     ItemFormat.TextAlign1 = textAlign;//
                 }
-                else if (textNode.Attributes["linespc"]?.Value != null)
+                if (textNode.Attributes["linespc"]?.Value != null)
                 {
                     linespace = Convert.ToInt32(textNode.Attributes["linespc"]?.Value);
                     ItemFormat.Linespace = linespace;//
                 }
-                else if (textNode.Attributes["rotate"]?.Value != null)
+                 if (textNode.Attributes["rotate"]?.Value != null)
                 {
                     rotate = Convert.ToBoolean(textNode.Attributes["rotate"]?.Value);
                     ItemFormat.Rotate = rotate;//
                 }
-                else if (textNode.Attributes["color"]?.Value != null)
+                 if (textNode.Attributes["color"]?.Value != null)
                 {
                     color = Convert.ToString(textNode.Attributes["color"]?.Value);
                     style = (ColorStyle)Enum.Parse(typeof(ColorStyle), color);//Casting from string to enum
                     ItemFormat.Color = style;
                 }
-                else if (textNode.Attributes["em"]?.Value != null)
+                 if (textNode.Attributes["em"]?.Value != null)
                 {
                     emphasized = Convert.ToBoolean(textNode.Attributes["em"]?.Value);
                     ItemFormat.Emphasized = emphasized;
                     //MessageBox.Show("em");
                 }
-                else if (textNode.Attributes["ul"]?.Value != null)
+                 if (textNode.Attributes["ul"]?.Value != null)
                 {
                     underLine = Convert.ToBoolean(textNode.Attributes["ul"]?.Value);
                     ItemFormat.UnderLine = underLine;
