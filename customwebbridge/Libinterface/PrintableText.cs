@@ -17,7 +17,9 @@ namespace customwebbridge.Libinterface
         public PrintableText(TextItem text)
         {
             this.text = text;
+            BAddLF = false;
             //check if you have to send a line feed command after the text
+            /*
             if (text.Linespace != 0)
             {
                 BAddLF = true;
@@ -26,6 +28,7 @@ namespace customwebbridge.Libinterface
             {
                 BAddLF = false;
             }
+            */
 
             FontSettings1 = new PrintFontSettings();
             FontSettings1.Underline = this.text.UnderLine;

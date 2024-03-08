@@ -25,9 +25,7 @@ namespace customwebbridge.Libinterface
                 dev.PrintBarcode(pt.Barcode_data, pt.BarcodeSettings);
             }
             else if(Item.Itemtype == BaseItem.ItemType.text)
-            {
-                string str = Item.ToString();
-                MessageBox.Show(str);
+            {                
                 PrintableText pt = new PrintableText((TextItem)Item);
                 dev.PrintText(pt.Testo.Text, pt.FontSettings1, pt.BAddLF);
             }

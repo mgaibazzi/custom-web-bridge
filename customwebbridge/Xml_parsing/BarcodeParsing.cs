@@ -33,30 +33,31 @@ namespace customwebbridge.Xml_parsing
             {
                 data = textNode.InnerText;
                 if(textNode.InnerText!=null)
-                    item.Data = data; 
+                    item.Data = data;
                 if (textNode.Attributes["width"]?.Value != null)
                 {
                     width = Convert.ToInt32(textNode.Attributes["width"]?.Value);
                     item.Width = width;
                 }
-                else if (textNode.Attributes["height"]?.Value != null)
+                if (textNode.Attributes["height"]?.Value != null)
                 {
                     height = Convert.ToInt32(textNode.Attributes["height"]?.Value);
                     item.Height = height;
                 }
-                else if (textNode.Attributes["hri"]?.Value != null)
+
+                if (textNode.Attributes["hri"]?.Value != null)
                 {
                     h = textNode.Attributes["hri"]?.Value;
                     hri = (Barcode1D.HRI)Enum.Parse(typeof(Barcode1D.HRI), h);//Casting from string to enum
                     item.Hri1 = hri;
                 }
-                else if (textNode.Attributes["font"]?.Value != null)
+                if (textNode.Attributes["font"]?.Value != null)
                 {
                     fnt = textNode.Attributes["font"]?.Value;
-                    font = (Barcode1D.FontStyle)Enum.Parse(typeof(Barcode1D.FontStyle),fnt);//Casting from string to enum
+                    font = (Barcode1D.FontStyle)Enum.Parse(typeof(Barcode1D.FontStyle), fnt);//Casting from string to enum
                     item.Font1 = font;
                 }
-                else if (textNode.Attributes["type"]?.Value != null)
+                if (textNode.Attributes["type"]?.Value != null)
                 {
                     ty = textNode.Attributes["type"]?.Value;
                     type = (Barcode1D.Type)Enum.Parse(typeof(Barcode1D.Type), ty);//Casting from string to enum
