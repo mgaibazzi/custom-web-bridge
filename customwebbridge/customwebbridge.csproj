@@ -92,6 +92,7 @@
     <Compile Include="Libinterface\Printable.cs" />
     <Compile Include="Libinterface\PrintableBarcode.cs" />
     <Compile Include="Libinterface\PrintableCut.cs" />
+    <Compile Include="Libinterface\PrintableEsc.cs" />
     <Compile Include="Libinterface\PrintableFeed.cs" />
     <Compile Include="Libinterface\PrintableDrawer.cs" />
     <Compile Include="Libinterface\PrintableImage.cs" />

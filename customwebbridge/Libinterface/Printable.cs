@@ -44,6 +44,11 @@ namespace customwebbridge.Libinterface
                 PrintableImage im=new PrintableImage((ImageItem)Item);
                 dev.PrintBitmapImage(im.Bp,im.Settings1);
             }
+            else if(Item.Itemtype==BaseItem.ItemType.command)
+            {
+                PrintableEsc esc = new PrintableEsc((EscItem)Item);
+                dev.CommWrite(esc.Data);
+            }
             else 
             {
                 PrintableDrawer dr = new PrintableDrawer((DrawerItem)Item);

@@ -30,6 +30,7 @@ namespace customwebbridge
             reset,
             sound,
             other,
+            esc,
             barcode,
             qrcode,
             none

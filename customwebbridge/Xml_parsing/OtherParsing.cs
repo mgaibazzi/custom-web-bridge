@@ -120,13 +120,9 @@ namespace customwebbridge.Xml_parsing
         //this funtion is used to parse the Item Esc
         public void EscParser(XmlNode textNode, List<BaseItem> items)//parsing ESC
         {
-            string esc = "1b2a210100555550a";
-
-            EscItem item = new EscItem();
-
             try
             {
-                esc = textNode.InnerText;
+                EscItem item = new EscItem(textNode.InnerText);
                 items.Add(item);
             }
             catch (Exception ex)

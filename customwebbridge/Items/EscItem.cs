@@ -13,7 +13,7 @@ namespace customwebbridge.Items
         //Default constructor 
         public EscItem() : base(ItemType.command)
         {
-            this.Esc = "1b2a2101005555550a";
+            this.Esc = "";
         }
         //Parameterized constructor 
         public EscItem(string esc):base(ItemType.command) 
