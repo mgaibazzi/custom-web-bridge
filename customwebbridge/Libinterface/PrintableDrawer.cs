@@ -11,7 +11,7 @@ namespace customwebbridge.Libinterface
 {
     internal class PrintableDrawer
     {
-        CuCustomWndDevice.CashDrawerType cashDrawerType;
+        CuCustomWndDevice.CashDrawerType cashDrawerType;//contains which drawer to open
         uint timeOn;
         //default constructor
         public PrintableDrawer(DrawerItem othersItem)

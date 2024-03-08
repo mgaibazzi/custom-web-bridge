@@ -6,14 +6,14 @@ namespace customwebbridge.Libinterface
     internal class PrintableEsc
     {
         private byte[] data;
-
+        //constructor 
         public PrintableEsc(EscItem esc)
         {
             this.Data = ConvertToByte(esc.Esc);
         }
-
+        //getter and setter
         public byte[] Data { get => data; set => data = value; }
-
+        //this function convert the  HEX string to Byte
         private byte[] ConvertToByte(string hexString)
         {
             if (hexString.Length % 2 != 0)

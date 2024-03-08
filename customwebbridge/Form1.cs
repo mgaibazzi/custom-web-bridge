@@ -18,11 +18,11 @@ namespace customwebbridge
 {
     public partial class Form1 : Form
     {
-        CuCustomWndAPIWrap customWndAPIWrap = null;
+        CuCustomWndAPIWrap customWndAPIWrap = null; 
         CuCustomWndDevice dev = null;
-        List<BaseItem> items = new List<BaseItem>();
+        List<BaseItem> items = new List<BaseItem>(); //this list is used to keep xml items
         String str = "";
-        USBDevice[] usbArray = null;
+        USBDevice[] usbArray = null; //used to get the port number of the usb device
 
         string selectedFilePath;
 
@@ -31,7 +31,7 @@ namespace customwebbridge
             InitializeComponent();
             bt_print.Visible = false;
         }
-
+        //this function is used to print when print button gets a click
         private void bt_print_Click(object sender, EventArgs e)
         {
             PrintXmlList(items);
@@ -108,7 +108,7 @@ namespace customwebbridge
         private void PrintXmlList(List<BaseItem> items)
         {
 
-
+            //check if the device is null or empty
             if ( (cb_select_USB.SelectedIndex != -1) && (usbArray!=null) && (usbArray.Length > 0) )
             {
                 try
@@ -128,7 +128,7 @@ namespace customwebbridge
 
             try
             {
-
+                //print the base item list
                 Printable printable = new Printable();
                 foreach (BaseItem item in items)
                 {

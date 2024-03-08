@@ -11,19 +11,21 @@ namespace customwebbridge
 {
     public class ImageItem : BaseItem
     {
-        Bitmap bitMap;
+        //this enum contains the scale of the image
         public enum Scale
         {
             none,
             width,
             fit
         }
+        //This enum contains in which mode the printer print
         public enum Mode
         {
             mono,
             gray16,
             gray256
         }
+        //thid enum contain in which type of black or gray you print
         public enum Color
         {
             color_1,
@@ -32,6 +34,7 @@ namespace customwebbridge
             color_4,
         }
 
+        Bitmap bitMap;
         int width;//1-256
         int height;//1-256
         string strImage = "";   //codified image

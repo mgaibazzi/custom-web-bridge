@@ -24,8 +24,8 @@ namespace customwebbridge.Xml_parsing
             int height;
             string md,cl,sc;
 
-
-            try
+            //check what attributes are arriving from the xml file
+            try 
             {
                 ImageItem imageItem = new ImageItem();
                 imageItem.StrImage = imageNode.InnerText;
